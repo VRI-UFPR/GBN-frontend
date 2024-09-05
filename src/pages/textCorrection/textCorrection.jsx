@@ -10,6 +10,7 @@ import { getPagina } from '../../api/paginaApi';
 import { getTextoOcrById } from '../../api/textoApi';
 
 import OcrCorrector from '../../components/ocrCorrector/ocrCorrector';
+import ReactMirador from '../../components/mirador/mirador';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -48,17 +49,17 @@ export default function ColumnsGrid() {
     }
     , []);
 
-    if (loading || pagina === undefined) {
-        return <p>Loading...</p>;
-    } else {
-        // console.log(pagina.image_path === undefined);
+    // if (loading || pagina === undefined) {
+    //     return <p>Loading...</p>;
+    // } else {
+    //     // console.log(pagina.image_path === undefined);
     return (
         <Box sx={{ flexGrow: 1 }}>
             {loading === false ? (
                 <Grid container spacing={2} columns={16}>
-                    <Grid xs={8}>
+                    <Grid item xs={8}>
                         <Item>
-                            <Image src={require("/home/pedro/src/gbn-frontend/src/assets/GBN/training-GBNv1/training-GBNv1/DerGemeindebote/train/DerGemeindebote-p02.png")}></Image>
+                            <ReactMirador />
                         </Item>
                     </Grid>
                     <Grid xs={8}>
@@ -70,5 +71,5 @@ export default function ColumnsGrid() {
             )}
         </Box>
     );
-}
+// }
 }

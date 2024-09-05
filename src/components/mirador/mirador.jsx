@@ -268,19 +268,29 @@
 
 
 import { useState, useEffect, useContext } from 'react';
-import './mirador.css';
+// import './mirador.css';
+
+// import Mirador from 'mirador';
+// import * as actions from 'mirador/dist/es/src/state/actions/index.js';
 
 import Mirador from 'mirador';
-import * as actions from 'mirador/dist/es/src/state/actions/index.js';
+import * as actions from 'mirador/dist/es/src/state/actions/index.js'
 
-import { AppContext } from '../../AppContext';
+// import { AppContext } from '../../AppContext';
+
+import { v4 as uuid } from 'uuid';
 
 export default function ReactMirador() {
+  const id = uuid();
+  const canvasImageName = '';
+  const collectionName = '';
   const [viewerInstance, setViewerInstance] = useState(null);
-  const { currentManifest } = useContext(AppContext);
-  const canvasId = canvasImageName
-    ? `${process.env.REACT_APP_IMAGE_API_BASE}/${collectionName}%2F${canvasImageName}.jpg`
-    : undefined;
+  // const { currentManifest } = useContext(AppContext);
+  const currentManifest = 'https://api.chgov.bar.admin.ch/manifests/32325206/32325206.json'
+  // const canvasId = canvasImageName
+    // ? `${process.env.REACT_APP_IMAGE_API_BASE}/${collectionName}%2F${canvasImageName}.jpg`
+    // : undefined;
+  const canvasId = '';
 
   useEffect(() => {
     // Initializing Mirador
@@ -316,7 +326,11 @@ export default function ReactMirador() {
           { key: 'scroll', behaviors: ['continuous'] },
         ],
       },
-      windows: [],
+      windows: [
+        {
+          loadedManifest: 'https://api.chgov.bar.admin.ch/manifests/32328778/32328778.json',
+        }
+      ],
       thumbnailNavigation: {
         defaultPosition: 'far-right',
       },
@@ -346,20 +360,22 @@ export default function ReactMirador() {
       // If there is no window yet, we need to create one
       if (!firstWindow) {
         const window = {
-          manifestId: currentManifest.id,
+          // manifestId: currentManifest.id,
+          manifestId: '',
           canvasId: canvasId,
         };
         store.dispatch(actions.addWindow(window));
         firstWindow = Object.values(store.getState().windows)[0];
         store.dispatch(actions.maximizeWindow(firstWindow.id));
+      // }
       } else {
         store.dispatch(actions.updateWindow(firstWindow.id, window));
       }
 
       // After the window has been created or updated, we need to manually reset the canvas to the
-      if (canvasId) {
-        firstWindow = Object.values(store.getState().windows)[0];
-      }
+      // if (canvasId) {
+      //   firstWindow = Object.values(store.getState().windows)[0];
+      // }
     }
 
   }, [viewerInstance, currentManifest, canvasId]); // eslint-disable-line react-hooks/exhaustive-deps
