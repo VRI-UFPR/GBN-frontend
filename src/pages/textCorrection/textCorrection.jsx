@@ -31,7 +31,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const MiradorContainer = styled(Box)({
     width: '100%',
-    height: '400px', // Adjust height as needed
+    height: '900px', // Adjust height as needed
     overflow: 'hidden',
     position: 'relative',
 });
