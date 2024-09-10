@@ -18,14 +18,23 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
-  media : {
-    xs: {
-      width: '50%',
-      height: '50%'
-    }
-  }
+//   media : {
+//     xs: {
+//       width: '50%',
+//       height: '50%'
+//     }
+//   }
+    width: '100%',
+    height: '100%'
 }));
 
+
+const MiradorContainer = styled(Box)({
+    width: '100%',
+    height: '400px', // Adjust height as needed
+    overflow: 'hidden',
+    position: 'relative',
+});
 
 
 export default function ColumnsGrid() {
@@ -58,8 +67,10 @@ export default function ColumnsGrid() {
             {loading === false ? (
                 <Grid container spacing={2} columns={16}>
                     <Grid item xs={8}>
-                        <Item>
-                            <ReactMirador />
+                        <Item > 
+                            <MiradorContainer>
+                                <ReactMirador />
+                            </MiradorContainer>
                         </Item>
                     </Grid>
                     <Grid xs={8}>
