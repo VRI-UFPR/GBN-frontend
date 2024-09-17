@@ -11,6 +11,7 @@ import { getTextoOcrById } from '../../api/textoApi';
 
 import OcrCorrector from '../../components/ocrCorrector/ocrCorrector';
 import ReactMirador from '../../components/mirador/mirador';
+import PeekFont from '../../components/peekFont/peekFont';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -75,6 +76,7 @@ export default function ColumnsGrid() {
                     </Grid>
                     <Grid xs={8}>
                         <OcrCorrector ocrText={ocrText} pagina={pagina} />           
+                        <PeekFont />
                     </Grid>
                 </Grid>
            ) : (
