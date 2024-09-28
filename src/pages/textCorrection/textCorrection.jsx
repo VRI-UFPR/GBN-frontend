@@ -7,7 +7,7 @@ import Image from 'mui-image'
 
 
 import { getPagina } from '../../api/paginaApi';
-import { getTextoOcrById } from '../../api/textoApi';
+import { getTextoOcrById, getPerguntaAlternativas } from '../../api/textoApi';
 
 import OcrCorrector from '../../components/ocrCorrector/ocrCorrector';
 import ReactMirador from '../../components/mirador/mirador';
@@ -36,7 +36,7 @@ const MiradorContainer = styled(Box)({
 export default function ColumnsGrid() {
     const [pagina, setPagina] = useState("");
     const [ocrText, setOcrText] = useState("");
-
+    const [perguntaAlternativas, setPerguntaAlternativas] = useState("");
     const [loading, setLoading] = useState(true);
 
     async function fetchData() {
@@ -45,6 +45,8 @@ export default function ColumnsGrid() {
         // const TextoOcrResponse = await getTextoOcrById(paginaRespose.id);
         const TextoOcrResponse = await getTextoOcrById(0);
         setOcrText(TextoOcrResponse === undefined ? "" : TextoOcrResponse);
+        const perguntaAlternativasResponse = await getPerguntaAlternativas(paginaRespose.id);
+        setPerguntaAlternativas(perguntaAlternativasResponse);
     }
 
 
@@ -54,7 +56,7 @@ export default function ColumnsGrid() {
     }
         , []);
 
-    // if (loading || pagina === undefined) {
+    // if (loading || pagina === undefined || !perguntaAlternativas) {
     //     return <p>Loading...</p>;
     // } else {
     //     // console.log(pagina.image_path === undefined);
@@ -82,7 +84,7 @@ export default function ColumnsGrid() {
                             maxHeight: '100vh',
                             overflowY: 'scroll' // Enable vertical scrolling
                         }}>
-                            <OcrCorrector ocrText={ocrText} pagina={pagina} />
+                            <OcrCorrector ocrText={ocrText} pagina={pagina} perguntaAlternativas={perguntaAlternativas} />
                             <PeekFont />
                         </Box>
                     </Grid>
