@@ -18,18 +18,13 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: 'center',
   color: theme.palette.text.secondary,
-//   media : {
-//     xs: {
-//       width: '50%',
-//       height: '50%'
-//     }
-//   }
     width: '100%',
     height: '100%'
 }));
 
 
 const MiradorContainer = styled(Box)({
+    // position: 'absolute',
     width: '100%',
     height: '900px', // Adjust height as needed
     overflow: 'hidden',

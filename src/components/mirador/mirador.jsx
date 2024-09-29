@@ -18,7 +18,8 @@ export default function ReactMirador() {
   const [viewerInstance, setViewerInstance] = useState(null);
   // const { currentManifest } = useContext(AppContext);
   // const currentManifest = 'https://api.chgov.bar.admin.ch/manifests/32325206/32325206.json'
-  const currentManifest = 'http://127.0.0.1:8182/iiif/2/DerGemeindebote-p01.png/info.json'
+  // const currentManifest = 'http://127.0.0.1:8182/iiif/2/DerGemeindebote-p01.png/info.json'
+  const currentManifest = 'http://0.0.0.0:8888/manifests/DerGemeindebote-p13.png_manifest.json'
   // const canvasId = canvasImageName
     // ? `${process.env.REACT_APP_IMAGE_API_BASE}/${collectionName}%2F${canvasImageName}.jpg`
     // : undefined;
@@ -112,7 +113,7 @@ export default function ReactMirador() {
       // }
     }
 
-  }, [viewerInstance]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [viewerInstance, currentManifest, canvasId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   
   // We need to return an empty div, to define the container for the mirador viewer. The container is linked by its id.
