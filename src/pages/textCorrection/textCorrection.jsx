@@ -14,23 +14,18 @@ import ReactMirador from '../../components/mirador/mirador';
 import PeekFont from '../../components/peekFont/peekFont';
 
 const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    //   media : {
-    //     xs: {
-    //       width: '50%',
-    //       height: '50%'
-    //     }
-    //   }
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
     width: '100%',
     height: '100%'
 }));
 
 
 const MiradorContainer = styled(Box)({
+    // position: 'absolute',
     width: '100%',
     height: '900px', // Adjust height as needed
     overflow: 'hidden',

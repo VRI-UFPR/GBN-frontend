@@ -17,6 +17,8 @@ const Textarea = styled(TextField)(({ theme }) => ({
     fontWeight: '400',
     lineHeight: '1.5',
     borderRadius: '0.25rem',
+    maxHeight: '900px', // Set a max height (adjust as needed)
+    overflowY: 'auto', // Enable vertical scrolling
 }));
 
 const ButtonSend = styled(Button)(({ theme }) => ({
