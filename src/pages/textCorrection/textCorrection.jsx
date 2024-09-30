@@ -56,10 +56,10 @@ export default function ColumnsGrid() {
     }
         , []);
 
-    // if (loading || pagina === undefined || !perguntaAlternativas) {
-    //     return <p>Loading...</p>;
-    // } else {
-    //     // console.log(pagina.image_path === undefined);
+    if (loading || pagina === undefined || !perguntaAlternativas) {
+        return <p>Loading...</p>;
+    } else {
+        // console.log(pagina.image_path === undefined);
     return (
         <Box sx={{
             flexGrow: 1,
@@ -94,5 +94,5 @@ export default function ColumnsGrid() {
             )}
         </Box>
     );
-    // }
+    }
 }
