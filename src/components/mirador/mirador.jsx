@@ -17,7 +17,9 @@ export default function ReactMirador() {
   const collectionName = '';
   const [viewerInstance, setViewerInstance] = useState(null);
   // const { currentManifest } = useContext(AppContext);
-  const currentManifest = 'https://api.chgov.bar.admin.ch/manifests/32325206/32325206.json'
+  // const currentManifest = 'https://api.chgov.bar.admin.ch/manifests/32325206/32325206.json'
+  // const currentManifest = 'http://127.0.0.1:8182/iiif/2/DerGemeindebote-p01.png/info.json'
+  const currentManifest = 'http://0.0.0.0:8888/manifests/DerGemeindebote-p13.png_manifest.json'
   // const canvasId = canvasImageName
     // ? `${process.env.REACT_APP_IMAGE_API_BASE}/${collectionName}%2F${canvasImageName}.jpg`
     // : undefined;
@@ -57,16 +59,16 @@ export default function ReactMirador() {
           { key: 'scroll', behaviors: ['continuous'] },
         ],
       },
-      windows: [
-        {
-          loadedManifest: 'https://api.chgov.bar.admin.ch/manifests/32325206/32325206.json',
-        }
-      ],
+      windows: [],
+      // windows: [
+      //   {
+      //     loadedManifest: currentManifest,
+      //   }
+      // ],
       thumbnailNavigation: {
         defaultPosition: 'far-right',
       },
     };
-
     setViewerInstance(Mirador.viewer(config));
 
     /**
@@ -84,6 +86,8 @@ export default function ReactMirador() {
   useEffect(() => {
     // Every time the currentManifest changes, we need to update the mirador windows to display the new manifest
     if (viewerInstance && currentManifest) {
+      console.log(currentManifest)
+
       const { store } = viewerInstance;
       const windows = Object.values(store.getState().windows);
       let firstWindow = windows.length > 0 ? windows[0] : null;
@@ -92,7 +96,7 @@ export default function ReactMirador() {
       if (!firstWindow) {
         const window = {
           // manifestId: currentManifest.id,
-          manifestId: '',
+          manifestId: currentManifest,
           canvasId: canvasId,
         };
         store.dispatch(actions.addWindow(window));
@@ -100,7 +104,7 @@ export default function ReactMirador() {
         store.dispatch(actions.maximizeWindow(firstWindow.id));
       // }
       } else {
-        store.dispatch(actions.updateWindow(firstWindow.id, window));
+        store.dispatch(actions.updateWindow(firstWindow.id, { manifestId: currentManifest }));
       }
 
       // After the window has been created or updated, we need to manually reset the canvas to the
