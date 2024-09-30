@@ -7,9 +7,13 @@ import ImageList from "@mui/material/ImageList";
 import Typography from "@mui/material/Typography";
 
 export default function FontAccordion(props) {
+  /*
+    Cria um array com 26 elementos, de 1 a 26, que representam os ids das imagens de cada letra do alfabeto. 
+  */
   const idArray = Array.from({ length: 26 }, (_, i) => i + 1);
   return (
-    <Accordion>
+    <Accordion sx={{marginTop:"1vh"}}>
+
       <AccordionSummary
         expandIcon={<ArrowDropDownIcon color="action"/>}
         aria-controls="panel2-content"
@@ -31,6 +35,9 @@ export default function FontAccordion(props) {
           {idArray.map((id) => (
             <ImageListItem key={id}>
               <img
+              /*
+                Carrega a imagem de cada letra do alfabeto, de acordo com o título da fonte e o id da letra
+              */
                 src={`/fonts/${props.title.toLowerCase()}/${id}.png`}
                 alt={`${props.title} Alphabet`}
                 loading="lazy"

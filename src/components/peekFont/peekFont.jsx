@@ -18,6 +18,8 @@ export default function PeekFont() {
         Alfabeto das Fontes Góticas
       </Typography>
       <FontAccordion title="Fraktur" />
+      <FontAccordion title="Textur" />
+      <FontAccordion title="Kanzlei" />
     </Box>
   );
 }
