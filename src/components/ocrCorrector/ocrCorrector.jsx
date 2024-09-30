@@ -22,7 +22,7 @@ const Textarea = styled(TextField)(({ theme }) => ({
     fontWeight: '400',
     lineHeight: '1.5',
     borderRadius: '0.25rem',
-    maxHeight: '900px', // Set a max height (adjust as needed)
+    maxHeight: '35.5rem', // Set a max height (adjust as needed)
     overflowY: 'auto', // Enable vertical scrolling
 }));
 
@@ -71,6 +71,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
 
             onSubmit={submitForm}
             sx={{ textAlign: 'center' }}
+            paddingTop =  '10rem'
         >
             <Textarea
                 id="outlined-textarea"

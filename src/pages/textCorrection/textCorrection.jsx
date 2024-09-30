@@ -42,8 +42,8 @@ export default function ColumnsGrid() {
     async function fetchData() {
         const paginaRespose = await getPagina();
         setPagina(paginaRespose);
-        // const TextoOcrResponse = await getTextoOcrById(paginaRespose.id);
-        const TextoOcrResponse = await getTextoOcrById(0);
+        const TextoOcrResponse = await getTextoOcrById(paginaRespose.id);
+        // const TextoOcrResponse = await getTextoOcrById(1);
         setOcrText(TextoOcrResponse === undefined ? "" : TextoOcrResponse);
         const perguntaAlternativasResponse = await getPerguntaAlternativas(paginaRespose.id);
         setPerguntaAlternativas(perguntaAlternativasResponse);
@@ -80,8 +80,8 @@ export default function ColumnsGrid() {
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'space-between',
-                            minHeight: '100vh',
-                            maxHeight: '100vh',
+                            minHeight: '56.25rem',
+                            maxHeight: '56.25rem',
                             overflowY: 'scroll' // Enable vertical scrolling
                         }}>
                             <OcrCorrector ocrText={ocrText} pagina={pagina} perguntaAlternativas={perguntaAlternativas} />
