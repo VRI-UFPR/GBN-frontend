@@ -63,6 +63,7 @@ export default function ColumnsGrid() {
             flexGrow: 1,
             display: 'flex', 
             flexDirection: 'column', 
+            // backgroundColor: '#f0aa00',
         }}>
             {loading === false ? (
                 <Grid container spacing={2} columns={16}>
@@ -80,7 +81,8 @@ export default function ColumnsGrid() {
                             justifyContent: 'space-between',
                             minHeight: '100vh',
                             maxHeight: '100vh',
-                            overflowY: 'scroll' // Enable vertical scrolling
+                            overflowY: 'scroll', // Enable vertical scrolling
+                            // backgroundColor: '#ffffff',
                         }}>
                             <OcrCorrector ocrText={ocrText} pagina={pagina} />
                             <PeekFont />

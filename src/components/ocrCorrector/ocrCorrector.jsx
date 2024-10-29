@@ -19,6 +19,7 @@ const Textarea = styled(TextField)(({ theme }) => ({
     borderRadius: '0.25rem',
     maxHeight: '900px', // Set a max height (adjust as needed)
     overflowY: 'auto', // Enable vertical scrolling
+    // backgroundColor: '#ffffff',
 }));
 
 const ButtonSend = styled(Button)(({ theme }) => ({
@@ -48,12 +49,17 @@ const OcrCorrector = ({ocrText, pagina}) => {
 
     return(
         <Box
+            sx={{
+                textAlign: 'center',
+                // backgroundColor: '#f0aa00',
+            }}
+
             component="form"
             noValidate
             autoComplete="off"
 
             onSubmit={submitForm}
-            sx={{ textAlign: 'center' }}
+            // sx={{ textAlign: 'center' }}
         >
             <Textarea
                 id="outlined-textarea"
