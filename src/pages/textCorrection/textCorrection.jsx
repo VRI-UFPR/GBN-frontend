@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -11,6 +11,7 @@ import { getTextoOcrById } from '../../api/textoApi';
 
 import OcrCorrector from '../../components/ocrCorrector/ocrCorrector';
 import ReactMirador from '../../components/mirador/mirador';
+import PeekFont from '../../components/peekFont/peekFont';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -35,7 +36,7 @@ const MiradorContainer = styled(Box)({
 export default function ColumnsGrid() {
     const [pagina, setPagina] = useState("");
     const [ocrText, setOcrText] = useState("");
-    
+
     const [loading, setLoading] = useState(true);
 
     async function fetchData() {
@@ -51,31 +52,45 @@ export default function ColumnsGrid() {
         fetchData();
         setLoading(false);
     }
-    , []);
+        , []);
 
     // if (loading || pagina === undefined) {
     //     return <p>Loading...</p>;
     // } else {
     //     // console.log(pagina.image_path === undefined);
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{
+            flexGrow: 1,
+            display: 'flex', 
+            flexDirection: 'column', 
+        }}>
             {loading === false ? (
                 <Grid container spacing={2} columns={16}>
                     <Grid item xs={8}>
-                        <Item > 
+                        <Item >
                             <MiradorContainer>
                                 <ReactMirador />
                             </MiradorContainer>
                         </Item>
                     </Grid>
-                    <Grid xs={8}>
-                        <OcrCorrector ocrText={ocrText} pagina={pagina} />           
+                    <Grid item xs={8} sx={{ display: 'flex', flexDirection: 'column', overflowY: 'hidden' }}>
+                        <Box sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            minHeight: '100vh',
+                            maxHeight: '100vh',
+                            overflowY: 'scroll' // Enable vertical scrolling
+                        }}>
+                            <OcrCorrector ocrText={ocrText} pagina={pagina} />
+                            <PeekFont />
+                        </Box>
                     </Grid>
                 </Grid>
-           ) : (
+            ) : (
                 <p>Loading...</p>
             )}
         </Box>
     );
-// }
+    // }
 }

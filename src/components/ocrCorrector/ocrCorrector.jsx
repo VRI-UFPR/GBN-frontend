@@ -53,6 +53,7 @@ const OcrCorrector = ({ocrText, pagina}) => {
             autoComplete="off"
 
             onSubmit={submitForm}
+            sx={{ textAlign: 'center' }}
         >
             <Textarea
                 id="outlined-textarea"
@@ -61,6 +62,7 @@ const OcrCorrector = ({ocrText, pagina}) => {
                 defaultValue={ocrText.texto_ocr}
                 onChange={handletextoCorrigidoManualmente}
                 multiline
+                sx={{ marginBottom: '1rem' }}
             />
 
             <ButtonSend variant="contained" endIcon={<SendIcon />}  type="submit" >
