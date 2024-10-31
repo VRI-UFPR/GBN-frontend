@@ -37,16 +37,21 @@ export default function ColumnsGrid() {
     const [pagina, setPagina] = useState("");
     const [ocrText, setOcrText] = useState("");
     const [perguntaAlternativas, setPerguntaAlternativas] = useState("");
+    const [currentManifest, setCurrentManifest] = useState('');
     const [loading, setLoading] = useState(true);
 
     async function fetchData() {
         const paginaRespose = await getPagina();
         setPagina(paginaRespose);
+
         const TextoOcrResponse = await getTextoOcrById(paginaRespose.id);
-        // const TextoOcrResponse = await getTextoOcrById(1);
         setOcrText(TextoOcrResponse === undefined ? "" : TextoOcrResponse);
+
         const perguntaAlternativasResponse = await getPerguntaAlternativas(paginaRespose.id);
         setPerguntaAlternativas(perguntaAlternativasResponse);
+
+        const manifest = "https://webdokumente.c3sl.ufpr.br/"+ paginaRespose.image_path+".jpg_manifest.json"
+        setCurrentManifest(manifest)
     }
 
 
@@ -71,7 +76,7 @@ export default function ColumnsGrid() {
                     <Grid item xs={8}>
                         <Item >
                             <MiradorContainer>
-                                <ReactMirador />
+                                <ReactMirador currentManifest={currentManifest} />
                             </MiradorContainer>
                         </Item>
                     </Grid>

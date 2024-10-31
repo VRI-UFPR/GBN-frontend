@@ -50,7 +50,6 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
         e.preventDefault();
         console.log(textoCorrigidoManualmente);   
         // quando resolver o problema do ocrText vir nulo, retirar a linha abaixo
-        ocrText = {id: 0};
         postTextoCorrigido(textoCorrigidoManualmente, alternativaSelecionada.alternativa_correta, ocrText.id, pagina.id, alternativaSelecionada.pergunta_id, 0);
     }
     
@@ -58,7 +57,6 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
         const alternativa = perguntaAlternativas.alternativas.find(
             alt => alt.alternativa === e.target.value
         );
-        console.log(alternativa);
         setAlternativaSelecionada(alternativa);
     };
 

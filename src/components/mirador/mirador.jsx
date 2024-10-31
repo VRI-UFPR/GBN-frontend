@@ -11,12 +11,11 @@ import * as actions from 'mirador/dist/es/src/state/actions/index.js'
 
 import { v4 as uuid } from 'uuid';
 
-export default function ReactMirador() {
+export default function ReactMirador({currentManifest}) {
   const id = uuid();
   const canvasImageName = '';
   const collectionName = '';
   const [viewerInstance, setViewerInstance] = useState(null);
-  const currentManifest = 'https://webdokumente.c3sl.ufpr.br/manifests/03101_imagem_de.jpg_manifest.json'
   const canvasId = '';
 
   useEffect(() => {
