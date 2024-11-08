@@ -5,10 +5,8 @@ import {
   styled, 
   Typography,
 } from '@mui/material'
-import { Image } from 'mui-image';
 import Link from '@mui/material/Link';
 import FooterTitle from './FooterTitle'
-//import FooterLink from './FooterLink'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import VRILogo from '../../assets/vri-logo.png'

@@ -8,8 +8,6 @@ import Gratulation from './components/Gratulation'
 function App() {
   return (
     <div>
-      {/* <div>This is a simple div with some text.</div> */}
-      {/*<div className="App">*/}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
@@ -18,7 +16,6 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Footer />
-      {/*</div>*/}
     </div>
   );
 }
