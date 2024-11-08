@@ -89,7 +89,7 @@ export default function ColumnsGrid() {
                             maxHeight: '56.25rem',
                             overflowY: 'scroll' // Enable vertical scrolling
                         }}>
-                            <OcrCorrector ocrText={ocrText} pagina={pagina} perguntaAlternativas={perguntaAlternativas} />
+                            <OcrCorrector ocrText={ocrText} pagina={pagina} perguntaAlternativas={perguntaAlternativas} updatePagina={fetchData} />
                             <PeekFont />
                         </Box>
                     </Grid>

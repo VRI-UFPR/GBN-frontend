@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
@@ -12,6 +12,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const Textarea = styled(TextField)(({ theme }) => ({
     width: '90%',
@@ -27,15 +29,27 @@ const Textarea = styled(TextField)(({ theme }) => ({
 }));
 
 const ButtonSend = styled(Button)(({ theme }) => ({
-    marginTop: '1rem',
-    fontSize: '0.875rem',
-    fontWeight: '400',
-    lineHeight: '1.5',
-    borderRadius: '0.25rem',
+    fontSize: '0.875rem !important',
+    fontWeight: '400 !important',
+    lineHeight: '1.5 !important',
+    borderRadius: '0.25rem !important',
+    color: '#000 !important',
+    padding: '1rem 2rem !important',
 }));
 
+const ButtonTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} placement="top" />
+))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+        color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+        backgroundColor: theme.palette.common.black,
+        fontSize: '1rem',
+    },
+}));
 
-const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
+const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => {
     const [textoCorrigidoManualmente, setTextoCorrigidoManualmente] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [alternativaSelecionada, setAlternativaSelecionada] = useState(null);
@@ -60,6 +74,9 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
         setAlternativaSelecionada(alternativa);
     };
 
+    useEffect(() => {
+        setTextoCorrigidoManualmente(ocrText.texto_ocr || "");
+      }, [ocrText]);
 
     return(
         <Box
@@ -75,15 +92,53 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
                 id="outlined-textarea"
                 label="Texto OCR"
                 InputLabelProps={{ shrink: true }}
-                defaultValue={ocrText.texto_ocr}
+                defaultValue={textoCorrigidoManualmente}
                 onChange={handletextoCorrigidoManualmente}
                 multiline
                 sx={{ marginBottom: '1rem' }}
             />
 
-            <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setShowModal(true)}>
-                Enviar Correcao
-            </ButtonSend>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '4rem',
+                    alignItems: 'center',
+                }}
+            >
+                <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
+                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setShowModal(true)}
+                        // esse aqui eh maior que o de trocar
+                        sx={{
+                            height: '4rem !important',
+                            backgroundColor: '#32CD32 !important', // LimeGreen
+                            '&:hover': {
+                                backgroundColor: '#2db82d !important', // LimeGreen claro para o efeito hover
+                            }
+                        }}
+                        >
+                        Enviar Correcao
+                    </ButtonSend>
+                </ButtonTooltip>
+                <ButtonTooltip title="Apresentar um novo texto para o desafio" placement="top-start" arrow>
+                    <ButtonSend
+                        variant="contained"
+                        type="button"
+                        endIcon={<AutorenewIcon />}
+                        onClick={() => updatePagina()}
+                        sx={{
+                            height: '3.5rem !important', // Tamanho menor para o botão "Trocar"
+                            backgroundColor: '#FF6347 !important', // Coral
+                            '&:hover': {
+                                backgroundColor: '#ff4f42', // Coral claro para o efeito hover
+                            }
+                        }}
+                        >
+                        Trocar
+                    </ButtonSend>
+                </ButtonTooltip>
+            </Box>
+
             <MyModal show={showModal} setShow={setShowModal}>
                 <FormControl sx={{ width: '100%' }}>
                     <form onSubmit={submitForm}>
