@@ -117,7 +117,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                             }
                         }}
                         >
-                        Enviar Correcao
+                        Enviar
                     </ButtonSend>
                 </ButtonTooltip>
                 <ButtonTooltip title="Apresentar um novo texto para o desafio" placement="top-start" arrow>
