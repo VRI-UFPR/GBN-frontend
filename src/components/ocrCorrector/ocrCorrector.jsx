@@ -92,7 +92,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                 id="outlined-textarea"
                 label="Texto OCR"
                 InputLabelProps={{ shrink: true }}
-                defaultValue={textoCorrigidoManualmente}
+                value={textoCorrigidoManualmente}
                 onChange={handletextoCorrigidoManualmente}
                 multiline
                 sx={{ marginBottom: '1rem' }}
