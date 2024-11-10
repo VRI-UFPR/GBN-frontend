@@ -79,7 +79,7 @@ const Gratulation = () => {
                         px: 4, 
                         py: 1,
                         fontSize:'0.9rem',
-                        textTransform: 'capitalize',
+                        textTransform: 'none',
                         borderRadius: 0,
                         color: '#fff',
                         backgroundColor: 'transparent',
