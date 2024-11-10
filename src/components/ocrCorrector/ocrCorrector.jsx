@@ -110,12 +110,11 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
             >
                 <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
                     <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setShowModal(true)}
-                        // esse aqui eh maior que o de trocar
                         sx={{
                             height: '4rem !important',
-                            backgroundColor: '#32CD32 !important', // LimeGreen
+                            backgroundColor: '#32CD32 !important', 
                             '&:hover': {
-                                backgroundColor: '#2db82d !important', // LimeGreen claro para o efeito hover
+                                backgroundColor: '#2db82d !important',
                             }
                         }}
                         >
@@ -129,10 +128,10 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                         endIcon={<AutorenewIcon />}
                         onClick={() => updatePagina()}
                         sx={{
-                            height: '3.5rem !important', // Tamanho menor para o botão "Trocar"
-                            backgroundColor: '#FF6347 !important', // Coral
+                            height: '3.5rem !important',
+                            backgroundColor: '#FF6347 !important',
                             '&:hover': {
-                                backgroundColor: '#ff4f42', // Coral claro para o efeito hover
+                                backgroundColor: '#ff4f42',
                             }
                         }}
                         >
@@ -144,21 +143,46 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
             <MyModal show={showModal} setShow={setShowModal}>
                 <FormControl sx={{ width: '100%' }}>
                     <form onSubmit={submitForm}>
-                        <FormLabel id="radio-buttons-pergunta">{perguntaAlternativas.pergunta}</FormLabel>
+                        <FormLabel id="radio-buttons-pergunta"
+                            sx={{
+                                marginBottom: '1rem !important',
+                                variant: 'h5 !important',
+                                position: 'relative',
+                                display: 'block',
+                                fontWeight: '500 !important',
+                                fontSize: '1.25rem !important',
+                                textAlign: 'center !important',
+                                color: '#313131 !important',
+                            }}
+                            >
+                            {perguntaAlternativas.pergunta}
+                            {/* </Typography> */}
+                        </FormLabel>
                         <RadioGroup defaultValue=""                            name="alternativas" 
                         onChange={handleAlternativaChange}
                         >
                             {perguntaAlternativas.alternativas.map((alternativa) => (
-                                <FormControlLabel value={alternativa.alternativa} control={<Radio />} label={alternativa.alternativa} />
+                                <FormControlLabel value={alternativa.alternativa} 
+                                control={<Radio size="small !important" 
+                                    sx={{
+                                        marginRight: '0.5rem !important',
+                                    }}
+                                />} label={alternativa.alternativa} 
+                                sx={{ 
+                                    alignItems: 'center',
+                                    marginBottom: '1rem' }} />
                             ))}
                         </RadioGroup>
-                        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', width: '100%'}}>
-                            <Button variant="contained" color="secondary" type="button" onClick={() => setShowModal(false)}>
-                                Fechar
-                            </Button>
-                            <Button variant="contained" color="primary" type="submit">
+                        <Box sx={{ mt: 2, display: 'flex', width: '100%', justifyContent: 'flex-end' }}>
+                            <ButtonSend variant="contained" type="submit" 
+                                sx={{
+                                    backgroundColor: '#32CD32 !important',
+                                    '&:hover': {
+                                        backgroundColor: '#2db82d !important',
+                                    }
+                                }}>
                                 Enviar Correção
-                            </Button>
+                            </ButtonSend>
                         </Box>
                     </form>
                 </FormControl>
