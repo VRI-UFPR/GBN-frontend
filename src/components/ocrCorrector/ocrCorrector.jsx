@@ -96,6 +96,8 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                 onChange={handletextoCorrigidoManualmente}
                 multiline
                 sx={{ marginBottom: '1rem' }}
+                minRows={8}
+                maxRows={8}
             />
 
             <Box
