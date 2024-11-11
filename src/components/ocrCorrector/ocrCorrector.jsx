@@ -108,19 +108,6 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                     alignItems: 'center',
                 }}
             >
-                <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
-                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setShowModal(true)}
-                        sx={{
-                            height: '4rem !important',
-                            backgroundColor: '#32CD32 !important', 
-                            '&:hover': {
-                                backgroundColor: '#2db82d !important',
-                            }
-                        }}
-                        >
-                        Enviar
-                    </ButtonSend>
-                </ButtonTooltip>
                 <ButtonTooltip title="Apresentar um novo texto para o desafio" placement="top-start" arrow>
                     <ButtonSend
                         variant="contained"
@@ -136,6 +123,19 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                         }}
                         >
                         Trocar
+                    </ButtonSend>
+                </ButtonTooltip>
+                <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
+                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setShowModal(true)}
+                        sx={{
+                            height: '4rem !important',
+                            backgroundColor: '#32CD32 !important', 
+                            '&:hover': {
+                                backgroundColor: '#2db82d !important',
+                            }
+                        }}
+                        >
+                        Enviar
                     </ButtonSend>
                 </ButtonTooltip>
             </Box>
