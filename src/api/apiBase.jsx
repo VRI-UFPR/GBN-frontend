@@ -1,11 +1,8 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: 'http://127.0.0.1:8000',
+    baseURL: 'https://webdokumente.c3sl.ufpr.br/api',
     withCredentials: false,
-    acessControlAllowOrigin: '*',
-    accessControlAllowMethods: 'GET,PUT,POST,DELETE',
-    accessControlAllowHeaders: "Content-Type, Authorization, X-Requested-With",
     headers: {
       'Content-Type': 'application/json',
     },

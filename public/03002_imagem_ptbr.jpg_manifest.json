@@ -1,0 +1,37 @@
+{
+    "@context": "http://iiif.io/api/presentation/2/context.json",
+    "@id": "https://webdokumente.c3sl.ufpr.br/cantaloupe/iiif/2/03002_imagem_ptbr.jpg/manifest.json",
+    "@type": "sc:Manifest",
+    "label": "03002_imagem_ptbr.jpg",
+    "sequences": [
+        {
+            "@type": "sc:Sequence",
+            "canvases": [
+                {
+                    "@id": "https://webdokumente.c3sl.ufpr.br/cantaloupe/iiif/2/03002_imagem_ptbr.jpg/canvas",
+                    "@type": "sc:Canvas",
+                    "label": "03002_imagem_ptbr.jpg",
+                    "height": 1328,
+                    "width": 391,
+                    "images": [
+                        {
+                            "@type": "oa:Annotation",
+                            "motivation": "sc:painting",
+                            "resource": {
+                                "@id": "https://webdokumente.c3sl.ufpr.br/cantaloupe/iiif/2/03002_imagem_ptbr.jpg/full/full/0/default.jpg",
+                                "@type": "dctypes:Image",
+                                "format": "image/jpeg",
+                                "service": {
+                                    "@context": "http://iiif.io/api/image/2/context.json",
+                                    "@id": "https://webdokumente.c3sl.ufpr.br/cantaloupe/iiif/2/03002_imagem_ptbr.jpg",
+                                    "profile": "http://iiif.io/api/image/2/level2.json"
+                                }
+                            },
+                            "on": "https://webdokumente.c3sl.ufpr.br/cantaloupe/iiif/2/03002_imagem_ptbr.jpg/canvas"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

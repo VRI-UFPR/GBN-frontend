@@ -13,12 +13,11 @@ export const getTextoOcrById = async (pagina_id) => {
 export const postTextoCorrigido = async (texto, resposta_correta,texto_ocr_id, pagina_id, pergunta_id, id) => {
     try {
         const payload = {
-            "texto_corrigido_manualmente": texto,
             "pagina_id": pagina_id,
             "texto_ocr_id": texto_ocr_id,
-            "pergunta_resposta_correta": resposta_correta,
             "pergunta_id": pergunta_id,
-            "id": id,
+            "texto_corrigido_manualmente": texto,
+            "pergunta_resposta_correta": resposta_correta
         };
 
         console.log(payload);

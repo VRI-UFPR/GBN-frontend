@@ -11,34 +11,17 @@ import * as actions from 'mirador/dist/es/src/state/actions/index.js'
 
 import { v4 as uuid } from 'uuid';
 
-export default function ReactMirador() {
+export default function ReactMirador({currentManifest}) {
   const id = uuid();
   const canvasImageName = '';
   const collectionName = '';
   const [viewerInstance, setViewerInstance] = useState(null);
-  // const { currentManifest } = useContext(AppContext);
-  const currentManifest = 'https://api.chgov.bar.admin.ch/manifests/32325206/32325206.json'
-  // const currentManifest = 'http://127.0.0.1:8182/iiif/2/DerGemeindebote-p01.png/info.json'
-  // const currentManifest = 'http://0.0.0.0:8888/manifests/DerGemeindebote-p13.png_manifest.json'
-  // const canvasId = canvasImageName
-    // ? `${process.env.REACT_APP_IMAGE_API_BASE}/${collectionName}%2F${canvasImageName}.jpg`
-    // : undefined;
   const canvasId = '';
 
   useEffect(() => {
     // Initializing Mirador
     let config = {
       id: `mirador-${id}`,
-      // createGenerateClassNameOptions: {
-      //   seed: `mirador-${id}`,
-      //   // Options passed directly to createGenerateClassName in Material-UI https://material-ui.com/styles/api/#creategenerateclassname-options-class-name-generator
-      //   productionPrefix: `mirador-${id}`,
-      // },
-      // workspace: {
-      //   allowNewWindows: false,
-      //   isWorkspaceAddVisible: false,
-      //   showZoomControls: true,
-      // },
       window: {
         allowFullscreen: true,
         allowClose: false,
@@ -46,13 +29,6 @@ export default function ReactMirador() {
           skipEmptyLines: true,
           optionsRenderMode: 'simple',
         },
-        // sideBarOpenByDefault: true,
-        // panels: {
-        //   info: true,
-        //   annotations: false,
-        //   attribution: false,
-        //   canvas: false,
-        // },
         views: [
           { key: 'single', behaviors: ['individuals'] },
           { key: 'book', behaviors: ['paged'] },
@@ -60,11 +36,6 @@ export default function ReactMirador() {
         ],
       },
       windows: [],
-      // windows: [
-      //   {
-      //     loadedManifest: currentManifest,
-      //   }
-      // ],
       thumbnailNavigation: {
         defaultPosition: 'far-right',
       },
@@ -107,10 +78,6 @@ export default function ReactMirador() {
         store.dispatch(actions.updateWindow(firstWindow.id, { manifestId: currentManifest }));
       }
 
-      // After the window has been created or updated, we need to manually reset the canvas to the
-      // if (canvasId) {
-      //   firstWindow = Object.values(store.getState().windows)[0];
-      // }
     }
 
   }, [viewerInstance, currentManifest, canvasId]); // eslint-disable-line react-hooks/exhaustive-deps
