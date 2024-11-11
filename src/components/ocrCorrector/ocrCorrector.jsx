@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect , useRef } from 'react';
 import { styled } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
@@ -22,6 +22,9 @@ import TabIcon from '@mui/icons-material/Tab';
 import DragHandleRoundedIcon from '@mui/icons-material/DragHandleRounded';
 import Draggable from 'react-draggable';
 import CloseIcon from '@mui/icons-material/Close';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { createPortal } from 'react-dom';
 
 const Textarea = styled(TextField)(({ theme }) => ({
     width: '90%',
@@ -38,19 +41,30 @@ const Textarea = styled(TextField)(({ theme }) => ({
 }));
 
 const ButtonSend = styled(Button)(({ theme }) => ({
-    marginTop: '1rem',
-    fontSize: '0.875rem',
-    fontWeight: '400',
-    lineHeight: '1.5',
-    borderRadius: '0.25rem',
+    fontSize: '0.875rem !important',
+    fontWeight: '400 !important',
+    lineHeight: '1.5 !important',
+    borderRadius: '0.25rem !important',
+    color: '#000 !important',
+    padding: '1rem 2rem !important',
 }));
 
+const ButtonTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} placement="top" />
+))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+        color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+        backgroundColor: theme.palette.common.black,
+        fontSize: '1rem',
+    },
+}));
 
-const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
+const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => {
     const [textoCorrigidoManualmente, setTextoCorrigidoManualmente] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [alternativaSelecionada, setAlternativaSelecionada] = useState(null);
-    const [expandedKeyboard, setExpandedKeyboard] = useState(false);
     const [showDraggableKeyboard, setShowDraggableKeyboard] = useState(false);
     const textAreaRef = useRef(null);
     
@@ -64,7 +78,6 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
         e.preventDefault();
         console.log(textoCorrigidoManualmente);   
         // quando resolver o problema do ocrText vir nulo, retirar a linha abaixo
-        ocrText = {id: 0};
         postTextoCorrigido(textoCorrigidoManualmente, alternativaSelecionada.alternativa_correta, ocrText.id, pagina.id, alternativaSelecionada.pergunta_id, 0);
     }
     
@@ -72,9 +85,12 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
         const alternativa = perguntaAlternativas.alternativas.find(
             alt => alt.alternativa === e.target.value
         );
-        console.log(alternativa);
         setAlternativaSelecionada(alternativa);
     };
+    
+    useEffect(() => {
+        setTextoCorrigidoManualmente(ocrText.texto_ocr || "");
+    }, [ocrText]);
 
     const focusTextArea = () => {
        if (textAreaRef.current && document.activeElement !== textAreaRef.current) {
@@ -83,7 +99,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
     };
 
     const handleAccordionToggle = () => {
-        setExpandedKeyboard(!expandedKeyboard);
+        setShowDraggableKeyboard(!showDraggableKeyboard);
     };
 
     return(
@@ -96,59 +112,71 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
             sx={{ textAlign: 'center' }}
             paddingTop =  '10rem'
         >
-            <span>
-                <Accordion
-                    expandedKeyboard={expandedKeyboard}
-                    square={true}
-                    elevation={0}
-                >
-                    <Textarea
-                        id="outlined-textarea"
-                        label="Texto OCR"
-                        InputLabelProps={{ shrink: true }}
-                        defaultValue={ocrText.texto_ocr}
-                        onChange={handletextoCorrigidoManualmente}
-                        multiline
-                        sx={{ marginBottom: '1rem' }}
-                        value={textoCorrigidoManualmente}
-                        inputRef={textAreaRef}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        onClick={handleAccordionToggle}
-                                    >
-                                        <KeyboardAlt />
-                                    </IconButton>
+            <Textarea
+                id="outlined-textarea"
+                label="Texto OCR"
+                InputLabelProps={{ shrink: true }}
+                onChange={handletextoCorrigidoManualmente}
+                multiline
+                sx={{ marginBottom: '1rem' }}
+                minRows={8}
+                maxRows={8}
+                value={textoCorrigidoManualmente}
+                inputRef={textAreaRef}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                onClick={handleAccordionToggle}
+                            >
+                                <KeyboardAlt />
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
+            />
 
-                                    {/* Segundo ícone: TabIcon */}
-                                    <IconButton
-                                        onClick={() => { setShowDraggableKeyboard(true); handleAccordionToggle(); }}
-                                        sx={{
-                                            position: expandedKeyboard ?  'relative !important' : 'absolute !important', 
-                                            visibility: expandedKeyboard ? 'visible' : 'hidden',
-                                        }}
-                                    >
-                                        <TabIcon />
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
+<Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '4rem',
+                    alignItems: 'center',
+                }}
+            >
+                <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
+                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => {setShowModal(true); }}
+                        // esse aqui eh maior que o de trocar
+                        sx={{
+                            height: '4rem !important',
+                            backgroundColor: '#32CD32 !important', // LimeGreen
+                            '&:hover': {
+                                backgroundColor: '#2db82d !important', // LimeGreen claro para o efeito hover
+                            }
                         }}
-                    />
-
-                    <AccordionDetails>
-                        <div>
-                            <GermanKeyboard
-                                textArea={textAreaRef}
-                                setInput={setTextoCorrigidoManualmente}
-                                focusArea={focusTextArea}
-                            />
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
-            </span>
-
-            <Draggable 
+                        >
+                        Enviar
+                    </ButtonSend>
+                </ButtonTooltip>
+                <ButtonTooltip title="Apresentar um novo texto para o desafio" placement="top-start" arrow>
+                    <ButtonSend
+                        variant="contained"
+                        type="button"
+                        endIcon={<AutorenewIcon />}
+                        onClick={() => updatePagina()}
+                        sx={{
+                            height: '3.5rem !important', // Tamanho menor para o botão "Trocar"
+                            backgroundColor: '#FF6347 !important', // Coral
+                            '&:hover': {
+                                backgroundColor: '#ff4f42', // Coral claro para o efeito hover
+                            }
+                        }}
+                        >
+                        Trocar
+                    </ButtonSend>
+                </ButtonTooltip>
+            </Box>
+            <Draggable
                 onDrag={focusTextArea}
                 handle="#drag-icon"
             >
@@ -160,11 +188,11 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
                         backgroundColor: 'white',
                         borderRadius: '0.25rem',
                         border: '1px solid #d2d2d2',
-                        width: '41rem',
+                        width: '47%',
                     }}
                 >   
                     {/* dois icones, um de arrastar e outro de fechar, tendo um ocupando a maior parte da linha */}
-                    <Box 
+                    <Box
                         sx={{
                             display: 'flex',
                             justifyContent: 'space-between',
@@ -173,28 +201,28 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
                             borderBottom: '1px solid #d2d2d2',
                         }}
                     >
-                    <IconButton
-                        id="drag-icon"
-                        sx={{
-                            width: '90%',
-                            height: '1rem',
-                            borderRadius: '0 !important',  
-                        }}
+                        <IconButton
+                            id="drag-icon"
+                            sx={{
+                                width: '90%',
+                                height: '1rem',
+                                borderRadius: '0 !important',  
+                            }}
                         >
-                        <DragHandleRoundedIcon
-                            preserveAspectRatio= 'none'
-                        />
-                    </IconButton>
-                    <IconButton
-                        onClick={() => setShowDraggableKeyboard(false)}
-                        sx={{
-                            width: '10%',
-                            height: '1rem',
-                            borderRadius: '0 !important',
-                        }}
-                    >
-                        <CloseIcon />
-                    </IconButton>
+                            <DragHandleRoundedIcon
+                                preserveAspectRatio='none'
+                            />
+                        </IconButton>
+                        <IconButton
+                            onClick={() => setShowDraggableKeyboard(false)}
+                            sx={{
+                                width: '10%',
+                                height: '1rem',
+                                borderRadius: '0 !important',
+                            }}
+                        >
+                            <CloseIcon />
+                        </IconButton>
                     </Box>
                     <GermanKeyboard
                         textArea={textAreaRef}
@@ -203,9 +231,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas}) => {
                     />
                 </Box>
             </Draggable>
-            <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => {setShowModal(true); setShowDraggableKeyboard(false)}}>
-                Enviar Correcao
-            </ButtonSend>
+
             <MyModal show={showModal} setShow={setShowModal}>
                 <FormControl sx={{ width: '100%' }}>
                     <form onSubmit={submitForm}>
