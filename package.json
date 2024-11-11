@@ -24,6 +24,7 @@
     "react-fetch-hook": "^1.9.5",
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
+    "react-simple-keyboard": "^3.8.5",
     "styled-components": "^6.1.12",
     "url": "^0.11.4",
     "web-vitals": "^2.1.4"

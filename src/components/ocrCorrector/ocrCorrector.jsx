@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useRef } from 'react';
 import { styled } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
 import Box from '@mui/material/Box';
@@ -12,6 +12,13 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import GermanKeyboard from '../GermanKeyboard/GermanKeyboard';
+import { KeyboardAlt } from '@mui/icons-material';
+import DragHandleRoundedIcon from '@mui/icons-material/DragHandleRounded';
+import Draggable from 'react-draggable';
+import CloseIcon from '@mui/icons-material/Close';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
@@ -53,7 +60,9 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
     const [textoCorrigidoManualmente, setTextoCorrigidoManualmente] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [alternativaSelecionada, setAlternativaSelecionada] = useState(null);
-
+    const [showDraggableKeyboard, setShowDraggableKeyboard] = useState(false);
+    const textAreaRef = useRef(null);
+    
     const handletextoCorrigidoManualmente = (e) => {
         e.preventDefault();
         setTextoCorrigidoManualmente(e.target.value);
@@ -73,10 +82,20 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
         );
         setAlternativaSelecionada(alternativa);
     };
-
+    
     useEffect(() => {
         setTextoCorrigidoManualmente(ocrText.texto_ocr || "");
-      }, [ocrText]);
+    }, [ocrText]);
+
+    const focusTextArea = () => {
+       if (textAreaRef.current && document.activeElement !== textAreaRef.current) {
+            textAreaRef.current.focus();
+        }
+    };
+
+    const handleAccordionToggle = () => {
+        setShowDraggableKeyboard(!showDraggableKeyboard);
+    };
 
     return(
         <Box
@@ -92,12 +111,24 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                 id="outlined-textarea"
                 label="Texto OCR"
                 InputLabelProps={{ shrink: true }}
-                value={textoCorrigidoManualmente}
                 onChange={handletextoCorrigidoManualmente}
                 multiline
                 sx={{ marginBottom: '1rem' }}
                 minRows={8}
                 maxRows={8}
+                value={textoCorrigidoManualmente}
+                inputRef={textAreaRef}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton
+                                onClick={handleAccordionToggle}
+                            >
+                                <KeyboardAlt />
+                            </IconButton>
+                        </InputAdornment>
+                    ),
+                }}
             />
 
             <Box
@@ -139,6 +170,61 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                     </ButtonSend>
                 </ButtonTooltip>
             </Box>
+            <Draggable
+                onDrag={focusTextArea}
+                handle="#drag-icon"
+            >
+                <Box
+                    sx={{
+                        visibility: showDraggableKeyboard ? 'visible' : 'hidden',
+                        zIndex: 3000,
+                        position: 'absolute',
+                        backgroundColor: 'white',
+                        borderRadius: '0.25rem',
+                        border: '1px solid #d2d2d2',
+                        width: '47%',
+                    }}
+                >   
+                    {/* dois icones, um de arrastar e outro de fechar, tendo um ocupando a maior parte da linha */}
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            padding: '0.5rem',
+                            borderBottom: '1px solid #d2d2d2',
+                        }}
+                    >
+                        <IconButton
+                            id="drag-icon"
+                            sx={{
+                                width: '90%',
+                                height: '1rem',
+                                borderRadius: '0 !important',  
+                            }}
+                        >
+                            <DragHandleRoundedIcon
+                                preserveAspectRatio='none'
+                            />
+                        </IconButton>
+                        <IconButton
+                            onClick={() => setShowDraggableKeyboard(false)}
+                            sx={{
+                                width: '10%',
+                                height: '1rem',
+                                borderRadius: '0 !important',
+                            }}
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                    </Box>
+                    <GermanKeyboard
+                        textArea={textAreaRef}
+                        setInput={setTextoCorrigidoManualmente}
+                        focusArea={focusTextArea}
+                    />
+                </Box>
+            </Draggable>
 
             <MyModal show={showModal} setShow={setShowModal}>
                 <FormControl sx={{ width: '100%' }}>
