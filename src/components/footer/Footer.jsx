@@ -16,7 +16,7 @@ const Footer = () => {
 
   const StackColumn = styled(Stack) (() => ({
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
     gap: 8,
@@ -39,54 +39,10 @@ const Footer = () => {
     <BoxRow 
     component = 'footer'
     sx={{
-      py: 4,
-      px: 2,
+      py: 2,
+      px: 1.5,
     }}
     >
-      <StackColumn>
-        <FooterTitle text={'Créditos'} />
-        <Typography 
-        variant='caption'
-        component='p' 
-        >
-          Open source landing page por Alessandra Couto
-        </Typography>
-        <Link href="https://github.com/alessandradocouto/landing-page-template-reactjs?tab=MIT-1-ov-file#readme"variant="body2" 
-          sx={{
-            color: '#414141',
-            "&:hover": {
-              color: '#1c2859',
-            }
-          }}
-          >
-            <GitHubIcon />
-        </Link> 
-        
-      </StackColumn>
-      
-      <StackColumn>
-        <Box>
-          <img
-            src={UFPRLogo}
-            alt="UFPRImg"
-            style={{ 
-                width: "30%", 
-            }}
-          />
-        </Box>
-      </StackColumn>
-      <StackColumn>
-      <Box>
-          <img
-            src={VRILogo}
-            alt="VRIImg"
-            style={{ 
-                width: "20%", 
-            }}
-          />
-        </Box>
-      </StackColumn>
-
       <StackColumn>
         <FooterTitle text={'Laboratório Visão Robótica e Imagem'} />
         <Stack 
@@ -121,6 +77,50 @@ const Footer = () => {
         component='p' 
         >
           &copy; 2024 VRI.
+        </Typography>
+      </StackColumn>
+      
+      <StackColumn>
+        <Box>
+            <img
+              src={VRILogo}
+              alt="VRIImg"
+              style={{ 
+                  width: "35%", 
+                  justifyContent: 'center'
+              }}
+            />
+          </Box>
+      </StackColumn>
+      <StackColumn>
+        <Box>
+          <img
+            src={UFPRLogo}
+            alt="UFPRImg"
+            style={{ 
+                width: "40%", 
+            }}
+          />
+        </Box>
+      </StackColumn>
+
+      <StackColumn>
+        <Link href="https://github.com/alessandradocouto/landing-page-template-reactjs?tab=MIT-1-ov-file#readme"variant="body2" 
+            sx={{
+              color: '#414141',
+              "&:hover": {
+                color: '#1c2859',
+              }
+            }}
+            >
+              <GitHubIcon />
+        </Link> 
+        <Typography 
+          variant='caption'
+          component='p' 
+          style={{fontSize: 9}}
+        >
+            Open source landing page por Alessandra Couto
         </Typography>
       </StackColumn>
     </BoxRow>

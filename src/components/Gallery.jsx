@@ -55,7 +55,7 @@ const Gallery = () => {
         justifyContent= 'center'
         alignItems= 'center'
         sx={{
-            py: 8,
+            paddingTop: 8,
             px: 2,
             display: { xs: 'flex'},
         }}
@@ -95,15 +95,15 @@ const Gallery = () => {
             </Box>
             
             <Box sx={{ 
-                maxWidth: 700,
+                maxWidth: 450,
                 width: '100%',
             }}>
                 <Carousel
                 centerSlidePercentage={40}
-                thumbWidth={180}
+                thumbWidth={140}
                 dynamicHeight={false}
                 centerMode={false}
-                showArrows={false}
+                showArrows={true}
                 autoPlay={false}
                 infiniteLoop={true}
                 selectedItem={imageData[currentIndex]}

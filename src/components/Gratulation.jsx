@@ -19,7 +19,8 @@ const Gratulation = () => {
         sx={{
             py: 10,
             px: 2,
-            backgroundColor: 'orange'
+            backgroundColor: 'orange',
+            color: '#fff',
         }}
         >
             <Title 
@@ -56,7 +57,7 @@ const Gratulation = () => {
                         px: 4, 
                         py: 1,
                         fontSize: '0.9rem',
-                        textTransform: 'capitalize',
+                        textTransform: 'uppercase',
                         borderRadius: 0,
                         borderColor: '#14192d',
                         color: '#fff',
@@ -73,13 +74,13 @@ const Gratulation = () => {
                     </Button>
                     <Button 
                     component={Link} 
-                    to={'https://lemmbraalemao.ufpr.br/'}
+                    to={'https://olimpiadaslemmbra.com.br/'}
                     variant='outlined'
                     sx={{
                         px: 4, 
                         py: 1,
                         fontSize:'0.9rem',
-                        textTransform: 'capitalize',
+                        textTransform: 'uppercase',
                         borderRadius: 0,
                         color: '#fff',
                         backgroundColor: 'transparent',
