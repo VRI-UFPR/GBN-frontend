@@ -181,7 +181,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                                         backgroundColor: '#2db82d !important',
                                     }
                                 }}>
-                                Enviar Correção
+                                Enviar
                             </ButtonSend>
                         </Box>
                     </form>
