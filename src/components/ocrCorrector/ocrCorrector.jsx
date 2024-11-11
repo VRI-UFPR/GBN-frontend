@@ -33,7 +33,6 @@ const Textarea = styled(TextField)(({ theme }) => ({
     borderRadius: '0.25rem',
     maxHeight: '35.5rem', // Set a max height (adjust as needed)
     overflowY: 'auto', // Enable vertical scrolling
-    pt: `${theme.spacing(2)} !important`
 }));
 
 const ButtonSend = styled(Button)(({ theme }) => ({
@@ -132,7 +131,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                 }}
             />
 
-<Box
+            <Box
                 sx={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -141,7 +140,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
                 }}
             >
                 <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
-                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => {setShowModal(true); }}
+                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setShowModal(true)}
                         // esse aqui eh maior que o de trocar
                         sx={{
                             height: '4rem !important',
