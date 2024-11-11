@@ -16,15 +16,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import GermanKeyboard from '../GermanKeyboard/GermanKeyboard';
 import { KeyboardAlt } from '@mui/icons-material';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import TabIcon from '@mui/icons-material/Tab';
 import DragHandleRoundedIcon from '@mui/icons-material/DragHandleRounded';
 import Draggable from 'react-draggable';
 import CloseIcon from '@mui/icons-material/Close';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import { createPortal } from 'react-dom';
 
 const Textarea = styled(TextField)(({ theme }) => ({
     width: '90%',
