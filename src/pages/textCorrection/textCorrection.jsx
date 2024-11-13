@@ -5,9 +5,9 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import Image from 'mui-image'
 
-
 import { getPagina } from '../../api/paginaApi';
 import { getTextoOcrById, getPerguntaAlternativas } from '../../api/textoApi';
+import { getUsuario } from '../../api/usuarioApi';
 
 import OcrCorrector from '../../components/ocrCorrector/ocrCorrector';
 import ReactMirador from '../../components/mirador/mirador';
@@ -54,8 +54,18 @@ export default function ColumnsGrid() {
         setCurrentManifest(manifest)
     }
 
+    const checkUser = async () => {
+        getUsuario().catch((error) => {
+            alert("Usuário não encontrado");
+            localStorage.removeItem("usuarioToken");
+            localStorage.removeItem("usuarioEmail");
+            window.location.href = "/";
+            return; 
+        });
+    }
 
     useEffect(() => {
+        checkUser();
         fetchData();
         setLoading(false);
     }
@@ -89,7 +99,7 @@ export default function ColumnsGrid() {
                             maxHeight: '56.25rem',
                             overflowY: 'scroll' // Enable vertical scrolling
                         }}>
-                            <OcrCorrector ocrText={ocrText} pagina={pagina} perguntaAlternativas={perguntaAlternativas} updatePagina={fetchData} />
+                            <OcrCorrector ocrText={ocrText} pagina={pagina} perguntaAlternativas={perguntaAlternativas} updatePagina={fetchData} checkUser={checkUser}/>
                             <PeekFont />
                         </Box>
                     </Grid>
