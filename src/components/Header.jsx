@@ -3,6 +3,8 @@ import { Box, Button, styled, Typography } from "@mui/material";
 import { Link } from 'react-router-dom'
 //img
 import headerImg from '../assets/Zeitung.png'
+import TextField from '@mui/material/TextField';
+import { getToken } from '../api/usuarioApi';
 
 const Header = () => {
 
@@ -33,6 +35,24 @@ const Header = () => {
         },
     }));
 
+    const handleLogin = async (language) => {
+        try {
+            const email = document.getElementById('email-input').value;
+            const token = await getToken(email);
+
+            if (!token) {
+                alert('Usuário não encontrado');
+                return;
+            }
+            localStorage.setItem('usuarioToken', token.access_token);
+            console.log(token.access_token);
+            localStorage.setItem('usuarioEmail', email);
+            window.location.href = `/leseolympiade`;
+        }
+        catch (error) {
+            console.error(error);
+        }
+    };
 
   return  (
         <CustomBox component='header'>
@@ -63,12 +83,24 @@ const Header = () => {
                 >
                    Escolha participar do desafio em português ou em alemão
                 </Typography>
+    
+                <TextField
+                    id="email-input"
+                    placeholder="Email"
+                    type="email"
+                    sx={{
+                        width: '100%',
+                        mb: 2,
+                        borderColor: '#fff',
+                        backgroundColor: '#fff',
+                    }}
+                />
 
                 <Box>
                     <Button 
                     component={Link}
                     variant='contained'
-                    to={'/leseolympiade'}
+                    onClick={handleLogin}
                     sx={{
                         mr: 2,
                         px: 4, 
@@ -91,7 +123,7 @@ const Header = () => {
                     </Button>
                     <Button 
                     component={Link} 
-                    to={'/leseolympiade'}
+                    onClick={handleLogin}
                     variant='outlined'
                     sx={{
                         px: 4, 
@@ -143,4 +175,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;

@@ -56,7 +56,7 @@ const ButtonTooltip = styled(({ className, ...props }) => (
     },
 }));
 
-const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => {
+const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, checkUser}) => {
     const [textoCorrigidoManualmente, setTextoCorrigidoManualmente] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [alternativaSelecionada, setAlternativaSelecionada] = useState(null);
@@ -71,7 +71,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina}) => 
     
     const submitForm = (e) => {
         e.preventDefault();
-        console.log(textoCorrigidoManualmente);   
+        checkUser();
         // quando resolver o problema do ocrText vir nulo, retirar a linha abaixo
         postTextoCorrigido(textoCorrigidoManualmente, alternativaSelecionada.alternativa_correta, ocrText.id, pagina.id, alternativaSelecionada.pergunta_id, 0);
     }
