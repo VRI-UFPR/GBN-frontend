@@ -113,7 +113,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
                 InputLabelProps={{ shrink: true }}
                 onChange={handletextoCorrigidoManualmente}
                 multiline
-                sx={{ marginBottom: '1rem' }}
+                sx={{ marginBottom: '1rem', overflowY: 'visible' }}
                 minRows={8}
                 maxRows={8}
                 value={textoCorrigidoManualmente}
