@@ -38,19 +38,16 @@ const Header = () => {
     const handleLogin = async (language) => {
         try {
             const email = document.getElementById('email-input').value;
-            const token = await getToken(email);
+            const token = await getToken(email).catch((error) => {
+                throw error;
+            });
 
-            if (!token) {
-                alert('Usuário não encontrado');
-                return;
-            }
             localStorage.setItem('usuarioToken', token.access_token);
-            console.log(token.access_token);
             localStorage.setItem('usuarioEmail', email);
             window.location.href = `/leseolympiade`;
         }
         catch (error) {
-            console.error(error);
+            alert('Falha ao logar\n' + error);
         }
     };
 

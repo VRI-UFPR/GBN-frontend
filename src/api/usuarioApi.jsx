@@ -8,20 +8,20 @@ export const getUsuario = async () => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log(response.data);
         return response.data;
     } catch (error) {
-        console.error(error);
         throw new Error('Falha ao carregar usuário'); 
     }
 }
 
 export const getToken = async (email) => {
+    if (!email) {
+        throw new Error('Email não informado');
+    }
     try {
         const response = await apiClient.post(`/auth/token/?email=${encodeURIComponent(email)}`);
-        console.log(response.data);
         return response.data;
     } catch (error) {
-        console.error(error);
+        throw new Error('Falha ao obter token');
     }
 }
