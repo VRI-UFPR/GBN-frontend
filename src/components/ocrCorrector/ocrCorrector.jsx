@@ -165,7 +165,14 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
                     </ButtonSend>
                 </ButtonTooltip>
                 <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
-                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setIsSelecionandoAlternativa(true)}
+                    <ButtonSend 
+                        variant="contained" 
+                        endIcon={<SendIcon />}
+                        type="button" 
+                        onClick={() => {
+                            setIsSelecionandoAlternativa(true);
+                            setShowDraggableKeyboard(false)
+                        }}
                         sx={{
                             height: '4rem !important',
                             backgroundColor: '#32CD32 !important', 
