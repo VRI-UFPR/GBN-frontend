@@ -103,7 +103,6 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
             noValidate
             autoComplete="off"
 
-            onSubmit={submitForm}
             sx={{ textAlign: 'center' }}
             paddingTop =  '10rem'
         >
