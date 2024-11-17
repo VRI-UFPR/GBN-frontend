@@ -21,6 +21,7 @@ import Draggable from 'react-draggable';
 import CloseIcon from '@mui/icons-material/Close';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Textarea = styled(TextField)(({ theme }) => ({
     width: '90%',
@@ -200,7 +201,6 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
                         width: '47%',
                     }}
                 >   
-                    {/* dois icones, um de arrastar e outro de fechar, tendo um ocupando a maior parte da linha */}
                     <Box
                         sx={{
                             display: 'flex',
@@ -284,21 +284,41 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
                             mt: 2,
                             display: 'flex',
                             width: '100%',
-                            justifyContent: 'flex-end',
+                            justifyContent: 'space-around',
                         }}
                     >
-                        <ButtonSend
-                            variant="contained"
-                            type="submit"
-                            sx={{
-                                backgroundColor: '#32CD32 !important',
-                                '&:hover': {
-                                    backgroundColor: '#2db82d !important',
-                                },
-                            }}
-                        >
-                            Enviar
-                        </ButtonSend>
+                        <ButtonTooltip title="Voltar para a transcrição do texto" placement="top-start">
+                            <ButtonSend
+                                variant="contained"
+                                type="button"
+                                startIcon={<ArrowBackIcon />}
+                                onClick={() => setIsSelecionandoAlternativa(false)}
+                                sx={{
+                                    height: '3.5rem !important',
+                                    backgroundColor: '#FF6347 !important',
+                                    '&:hover': {
+                                        backgroundColor: '#ff4f42',
+                                    }
+                                }}
+                            >
+                                Voltar
+                            </ButtonSend>
+                        </ButtonTooltip>
+                        <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
+                            <ButtonSend
+                                variant="contained"
+                                type="submit"
+                                endIcon={<SendIcon />}
+                                sx={{
+                                    backgroundColor: '#32CD32 !important',
+                                    '&:hover': {
+                                        backgroundColor: '#2db82d !important',
+                                    },
+                                }}
+                            >
+                                Enviar
+                            </ButtonSend>
+                        </ButtonTooltip>
                     </Box>
                 </form>
             </FormControl>
