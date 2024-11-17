@@ -74,6 +74,13 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
         checkUser();
         // quando resolver o problema do ocrText vir nulo, retirar a linha abaixo
         postTextoCorrigido(textoCorrigidoManualmente, alternativaSelecionada.alternativa_correta, ocrText.id, pagina.id, alternativaSelecionada.pergunta_id, 0);
+
+        setShowModal(false);
+        updatePagina();
+        if(pagina.id == 0){
+            window.location.href = "/gratulation";
+            return; 
+        }
     }
     
     const handleAlternativaChange = (e) => {
