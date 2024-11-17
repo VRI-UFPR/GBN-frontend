@@ -58,7 +58,7 @@ const ButtonTooltip = styled(({ className, ...props }) => (
 
 const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, checkUser}) => {
     const [textoCorrigidoManualmente, setTextoCorrigidoManualmente] = useState("");
-    const [showModal, setShowModal] = useState(false);
+    const [isSelecionandoAlternativa, setIsSelecionandoAlternativa] = useState(false);
     const [alternativaSelecionada, setAlternativaSelecionada] = useState(null);
     const [showDraggableKeyboard, setShowDraggableKeyboard] = useState(false);
     const textAreaRef = useRef(null);
@@ -75,7 +75,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
         // quando resolver o problema do ocrText vir nulo, retirar a linha abaixo
         postTextoCorrigido(textoCorrigidoManualmente, alternativaSelecionada.alternativa_correta, ocrText.id, pagina.id, alternativaSelecionada.pergunta_id, 0);
 
-        setShowModal(false);
+        setIsSelecionandoAlternativa(false);
         updatePagina();
         if(pagina.id == 0){
             window.location.href = "/gratulation";
@@ -113,6 +113,8 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
             sx={{ textAlign: 'center' }}
             paddingTop =  '10rem'
         >
+            {!isSelecionandoAlternativa ? (
+                <>
             <Textarea
                 id="outlined-textarea"
                 label="Texto OCR"
@@ -163,7 +165,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
                     </ButtonSend>
                 </ButtonTooltip>
                 <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
-                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setShowModal(true)}
+                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setIsSelecionandoAlternativa(true)}
                         sx={{
                             height: '4rem !important',
                             backgroundColor: '#32CD32 !important', 
@@ -232,54 +234,69 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
                 </Box>
             </Draggable>
 
-            <MyModal show={showModal} setShow={setShowModal}>
-                <FormControl sx={{ width: '100%' }}>
-                    <form onSubmit={submitForm}>
-                        <FormLabel id="radio-buttons-pergunta"
-                            sx={{
-                                marginBottom: '1rem !important',
-                                variant: 'h5 !important',
-                                position: 'relative',
-                                display: 'block',
-                                fontWeight: '500 !important',
-                                fontSize: '1.25rem !important',
-                                textAlign: 'center !important',
-                                color: '#313131 !important',
-                            }}
-                            >
-                            {perguntaAlternativas.pergunta}
-                            {/* </Typography> */}
-                        </FormLabel>
-                        <RadioGroup defaultValue=""                            name="alternativas" 
+            </>
+             ) : (
+            <FormControl sx={{ width: '80%' }}>
+                <form onSubmit={submitForm}>
+                    <FormLabel
+                        id="radio-buttons-pergunta"
+                        sx={{
+                            marginBottom: '1rem !important',
+                            fontWeight: '500 !important',
+                            fontSize: '1.25rem !important',
+                            color: '#313131 !important',
+                        }}
+                    >
+                        {perguntaAlternativas.pergunta}
+                    </FormLabel>
+                    <RadioGroup
+                        defaultValue=""
+                        name="alternativas"
                         onChange={handleAlternativaChange}
-                        >
-                            {perguntaAlternativas.alternativas.map((alternativa) => (
-                                <FormControlLabel value={alternativa.alternativa} 
-                                control={<Radio size="small !important" 
-                                    sx={{
-                                        marginRight: '0.5rem !important',
-                                    }}
-                                />} label={alternativa.alternativa} 
-                                sx={{ 
-                                    alignItems: 'center',
-                                    marginBottom: '1rem' }} />
-                            ))}
-                        </RadioGroup>
-                        <Box sx={{ mt: 2, display: 'flex', width: '100%', justifyContent: 'flex-end' }}>
-                            <ButtonSend variant="contained" type="submit" 
+                        sx={{
+                            textAlign: 'justify !important',
+                        }}
+                    >
+                        {perguntaAlternativas.alternativas.map((alternativa) => (
+                            <FormControlLabel
+                                key={alternativa.alternativa}
+                                value={alternativa.alternativa}
+                                control={<Radio sx={{
+                                    marginRight: '0.5rem !important',
+                                }}/>}
+                                label={alternativa.alternativa}
                                 sx={{
-                                    backgroundColor: '#32CD32 !important',
-                                    '&:hover': {
-                                        backgroundColor: '#2db82d !important',
-                                    }
-                                }}>
-                                Enviar
-                            </ButtonSend>
-                        </Box>
-                    </form>
-                </FormControl>
-            </MyModal>
-        </Box>      
+                                    alignItems: 'center',
+                                    marginBottom: '1rem',
+                                }}
+                            />
+                        ))}
+                    </RadioGroup>
+                    <Box
+                        sx={{
+                            mt: 2,
+                            display: 'flex',
+                            width: '100%',
+                            justifyContent: 'flex-end',
+                        }}
+                    >
+                        <ButtonSend
+                            variant="contained"
+                            type="submit"
+                            sx={{
+                                backgroundColor: '#32CD32 !important',
+                                '&:hover': {
+                                    backgroundColor: '#2db82d !important',
+                                },
+                            }}
+                        >
+                            Enviar
+                        </ButtonSend>
+                    </Box>
+                </form>
+            </FormControl>
+        )}
+        </Box>
     );
 };
 
