@@ -94,7 +94,6 @@ export default function ColumnsGrid() {
                         <Box sx={{
                             display: 'flex',
                             flexDirection: 'column',
-                            justifyContent: 'space-between',
                             minHeight: '56.25rem',
                             maxHeight: '56.25rem',
                             overflowY: 'scroll' // Enable vertical scrolling

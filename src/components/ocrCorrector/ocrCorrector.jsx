@@ -111,7 +111,7 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
             autoComplete="off"
 
             sx={{ textAlign: 'center' }}
-            paddingTop =  '10rem'
+            paddingTop = '1rem'
         >
             {!isSelecionandoAlternativa ? (
                 <>
