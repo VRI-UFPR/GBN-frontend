@@ -56,7 +56,7 @@ export default function ColumnsGrid() {
 
     const checkUser = async () => {
         getUsuario().catch((error) => {
-            alert("Usuário não encontrado");
+            alert(error);
             localStorage.removeItem("usuarioToken");
             localStorage.removeItem("usuarioEmail");
             window.location.href = "/";
