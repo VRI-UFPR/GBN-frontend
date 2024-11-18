@@ -51,7 +51,7 @@ const Gratulation = () => {
                     <Button 
                     component={Link}
                     variant='contained'
-                    to={'/'}
+                    to={'http://localhost:3000/leseolympiade'}
                     sx={{
                         mr: 2,
                         px: 4, 
