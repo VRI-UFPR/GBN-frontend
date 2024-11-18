@@ -83,7 +83,7 @@ const Header = () => {
     
                 <TextField
                     id="email-input"
-                    placeholder="Email"
+                    placeholder="E-mail"
                     type="email"
                     sx={{
                         width: '100%',

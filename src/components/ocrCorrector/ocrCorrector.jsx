@@ -190,7 +190,7 @@ const OcrCorrector = ({
               </ButtonSend>
             </ButtonTooltip>
             <ButtonTooltip
-              title="Enviar o texto corrigido"
+              title="Prosseguir para a questão"
               placement="top-start"
             >
               <ButtonSend
@@ -209,7 +209,7 @@ const OcrCorrector = ({
                   },
                 }}
               >
-                Enviar
+                PROSSEGUIR
               </ButtonSend>
             </ButtonTooltip>
           </Box>
@@ -306,7 +306,7 @@ const OcrCorrector = ({
               ))}
             </RadioGroup>
 
-            {error && (<Error textoErro="Por favor selecione uma alternativa" ></Error>)}
+            {error && (<Error textoErro="Por favor, selecione uma alternativa" ></Error>)}
 
             <Box
               sx={{
@@ -338,7 +338,7 @@ const OcrCorrector = ({
                 </ButtonSend>
               </ButtonTooltip>
               <ButtonTooltip
-                title="Enviar o texto corrigido"
+                title="Enviar a transcrição e a alternativa"
                 placement="top-start"
               >
                 <ButtonSend

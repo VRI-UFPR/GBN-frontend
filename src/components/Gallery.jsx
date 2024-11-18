@@ -11,9 +11,14 @@ import { Carousel } from "react-responsive-carousel";
 // components
 import Title from './Title'
 import Paragraph from './Paragraph'
-import UFPRLogo from '../assets/UFPR-pt.png'
-import VRILogo from '../assets/vri-logo.png'
-
+import imagem1 from '../assets/1.png'
+import imagem2 from '../assets/2.png'
+import imagem3 from '../assets/3.png'
+import imagem4 from '../assets/4.png'
+import imagem5 from '../assets/5.png'
+import imagem6 from '../assets/6.png'
+import imagem7 from '../assets/7.png'
+import imagem8 from '../assets/8.png'
 
 const Gallery = () => {
     
@@ -21,20 +26,36 @@ const Gallery = () => {
 
     const imageData = [
         {
-            alt: 'image1',
-            url: VRILogo
+            alt: 'imagem 1',
+            url: imagem1
         },
         {
-            alt: 'image2',
-            url: UFPRLogo
+            alt: 'imagem 2',
+            url: imagem2
         },
         {
-            alt: "image3",
-            url: VRILogo
+            alt: "imagem 3",
+            url: imagem3
         },
         {
-            alt: "image4",
-            url: UFPRLogo
+            alt: "imagem 4",
+            url: imagem4
+        },
+        {
+            alt: 'imagem 5',
+            url: imagem5
+        },
+        {
+            alt: 'imagem 6',
+            url: imagem6
+        },
+        {
+            alt: "imagem 7",
+            url: imagem7
+        },
+        {
+            alt: "imagem 8",
+            url: imagem8
         },
     ];
   
@@ -83,14 +104,22 @@ const Gallery = () => {
                     Como funciona a Leseolympiade
                 </Typography>
                 <Paragraph text={
-                    'Escolha sua língua de preferência (1),\
-                    autentifique-se com seu e-mail do Lemmbra (2), \
-                    interprete e responda às perguntas de cada página (3) e\
-                    corrija a transcrição do conteúdo do jornal (4).'
+                    'Autentifique-se com seu e-mail da Lemmbra e inicie o desafio escolhendo sua língua de preferência (1).\
+                    Corrija a transcrição do conteúdo do jornal. \
+                    Para isso, você pode utilizar o teclado para digitar caracteres especiais (2)\
+                    e conferir o Alfabeto das Fontes Góticas, caso tenha alguma dúvida (3).\
+                    Caso queira realizar o desafio com outra imagem, clique em TROCAR (4).\
+                    Assim que finalizar a transcrição, clique em PROSSEGUIR (5).\
+                    Você sempre pode retornar a sua transcrição clicando em VOLTAR (6).\
+                    Realize a interpretação do texto que você acabou de transcrever e pronto!\
+                    Ao clicar em ENVIAR você finaliza a LeseOlympiade (7)!\
+                    Caso deseje, você pode realizar o desafio novamente, ou retornar para o site da Lemmbra. (8)\
+                    '
                 } 
                 maxWidth = {'sm'}
                 mx={'auto'}
-                textAlign={'center'}
+                textAlign={'justify'}
+                
                 />
             </Box>
             
