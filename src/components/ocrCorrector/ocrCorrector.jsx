@@ -21,6 +21,7 @@ import Draggable from 'react-draggable';
 import CloseIcon from '@mui/icons-material/Close';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Textarea = styled(TextField)(({ theme }) => ({
     width: '90%',
@@ -58,7 +59,7 @@ const ButtonTooltip = styled(({ className, ...props }) => (
 
 const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, checkUser}) => {
     const [textoCorrigidoManualmente, setTextoCorrigidoManualmente] = useState("");
-    const [showModal, setShowModal] = useState(false);
+    const [isSelecionandoAlternativa, setIsSelecionandoAlternativa] = useState(false);
     const [alternativaSelecionada, setAlternativaSelecionada] = useState(null);
     const [showDraggableKeyboard, setShowDraggableKeyboard] = useState(false);
     const textAreaRef = useRef(null);
@@ -74,6 +75,13 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
         checkUser();
         // quando resolver o problema do ocrText vir nulo, retirar a linha abaixo
         postTextoCorrigido(textoCorrigidoManualmente, alternativaSelecionada.alternativa_correta, ocrText.id, pagina.id, alternativaSelecionada.pergunta_id, 0);
+
+        setIsSelecionandoAlternativa(false);
+        updatePagina();
+        if(pagina.id == 0){
+            window.location.href = "/gratulation";
+            return; 
+        }
     }
     
     const handleAlternativaChange = (e) => {
@@ -103,10 +111,11 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
             noValidate
             autoComplete="off"
 
-            onSubmit={submitForm}
             sx={{ textAlign: 'center' }}
-            paddingTop =  '10rem'
+            paddingTop = '1rem'
         >
+            {!isSelecionandoAlternativa ? (
+                <>
             <Textarea
                 id="outlined-textarea"
                 label="Texto OCR"
@@ -157,7 +166,14 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
                     </ButtonSend>
                 </ButtonTooltip>
                 <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
-                    <ButtonSend variant="contained" endIcon={<SendIcon />} type="button" onClick={() => setShowModal(true)}
+                    <ButtonSend 
+                        variant="contained" 
+                        endIcon={<SendIcon />}
+                        type="button" 
+                        onClick={() => {
+                            setIsSelecionandoAlternativa(true);
+                            setShowDraggableKeyboard(false)
+                        }}
                         sx={{
                             height: '4rem !important',
                             backgroundColor: '#32CD32 !important', 
@@ -185,7 +201,6 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
                         width: '47%',
                     }}
                 >   
-                    {/* dois icones, um de arrastar e outro de fechar, tendo um ocupando a maior parte da linha */}
                     <Box
                         sx={{
                             display: 'flex',
@@ -226,54 +241,89 @@ const OcrCorrector = ({ocrText, pagina, perguntaAlternativas, updatePagina, chec
                 </Box>
             </Draggable>
 
-            <MyModal show={showModal} setShow={setShowModal}>
-                <FormControl sx={{ width: '100%' }}>
-                    <form onSubmit={submitForm}>
-                        <FormLabel id="radio-buttons-pergunta"
-                            sx={{
-                                marginBottom: '1rem !important',
-                                variant: 'h5 !important',
-                                position: 'relative',
-                                display: 'block',
-                                fontWeight: '500 !important',
-                                fontSize: '1.25rem !important',
-                                textAlign: 'center !important',
-                                color: '#313131 !important',
-                            }}
-                            >
-                            {perguntaAlternativas.pergunta}
-                            {/* </Typography> */}
-                        </FormLabel>
-                        <RadioGroup defaultValue=""                            name="alternativas" 
+            </>
+             ) : (
+            <FormControl sx={{ width: '80%' }}>
+                <form onSubmit={submitForm}>
+                    <FormLabel
+                        id="radio-buttons-pergunta"
+                        sx={{
+                            marginBottom: '1rem !important',
+                            fontWeight: '500 !important',
+                            fontSize: '1.25rem !important',
+                            color: '#313131 !important',
+                        }}
+                    >
+                        {perguntaAlternativas.pergunta}
+                    </FormLabel>
+                    <RadioGroup
+                        defaultValue=""
+                        name="alternativas"
                         onChange={handleAlternativaChange}
-                        >
-                            {perguntaAlternativas.alternativas.map((alternativa) => (
-                                <FormControlLabel value={alternativa.alternativa} 
-                                control={<Radio size="small !important" 
-                                    sx={{
-                                        marginRight: '0.5rem !important',
-                                    }}
-                                />} label={alternativa.alternativa} 
-                                sx={{ 
+                        sx={{
+                            textAlign: 'justify !important',
+                        }}
+                    >
+                        {perguntaAlternativas.alternativas.map((alternativa) => (
+                            <FormControlLabel
+                                key={alternativa.alternativa}
+                                value={alternativa.alternativa}
+                                control={<Radio sx={{
+                                    marginRight: '0.5rem !important',
+                                }}/>}
+                                label={alternativa.alternativa}
+                                sx={{
                                     alignItems: 'center',
-                                    marginBottom: '1rem' }} />
-                            ))}
-                        </RadioGroup>
-                        <Box sx={{ mt: 2, display: 'flex', width: '100%', justifyContent: 'flex-end' }}>
-                            <ButtonSend variant="contained" type="submit" 
+                                    marginBottom: '1rem',
+                                }}
+                            />
+                        ))}
+                    </RadioGroup>
+                    <Box
+                        sx={{
+                            mt: 2,
+                            display: 'flex',
+                            width: '100%',
+                            justifyContent: 'space-around',
+                        }}
+                    >
+                        <ButtonTooltip title="Voltar para a transcrição do texto" placement="top-start">
+                            <ButtonSend
+                                variant="contained"
+                                type="button"
+                                startIcon={<ArrowBackIcon />}
+                                onClick={() => setIsSelecionandoAlternativa(false)}
+                                sx={{
+                                    height: '3.5rem !important',
+                                    backgroundColor: '#FF6347 !important',
+                                    '&:hover': {
+                                        backgroundColor: '#ff4f42',
+                                    }
+                                }}
+                            >
+                                Voltar
+                            </ButtonSend>
+                        </ButtonTooltip>
+                        <ButtonTooltip title="Enviar o texto corrigido" placement="top-start" >
+                            <ButtonSend
+                                variant="contained"
+                                type="submit"
+                                endIcon={<SendIcon />}
                                 sx={{
                                     backgroundColor: '#32CD32 !important',
                                     '&:hover': {
                                         backgroundColor: '#2db82d !important',
-                                    }
-                                }}>
+                                    },
+                                }}
+                            >
                                 Enviar
                             </ButtonSend>
-                        </Box>
-                    </form>
-                </FormControl>
-            </MyModal>
-        </Box>      
+                        </ButtonTooltip>
+                    </Box>
+                </form>
+            </FormControl>
+        )}
+        </Box>
     );
 };
 
