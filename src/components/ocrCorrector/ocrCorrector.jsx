@@ -95,15 +95,16 @@ const OcrCorrector = ({
       ocrText.id,
       pagina.id,
       alternativaSelecionada.pergunta_id,
-      0
+      localStorage.getItem("usuarioId")
     );
 
     setIsSelecionandoAlternativa(false);
     updatePagina();
-    window.location.href = "/gratulation";
-    // if (pagina.id == 0) {
-    //   return;
-    // }
+    
+    if (pagina.last_page === true) {
+      window.location.href = "/gratulation";
+      return;
+    }
   };
 
   const handleAlternativaChange = (e) => {

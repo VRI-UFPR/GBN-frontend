@@ -15,6 +15,7 @@ export const postTextoCorrigido = async (texto, resposta_correta,texto_ocr_id, p
         const payload = {
             "pagina_id": pagina_id,
             "texto_ocr_id": texto_ocr_id,
+            "usuario_id": id,
             "pergunta_id": pergunta_id,
             "texto_corrigido_manualmente": texto,
             "pergunta_resposta_correta": resposta_correta
