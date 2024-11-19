@@ -29,6 +29,13 @@ export default function ReactMirador({currentManifest}) {
           skipEmptyLines: true,
           optionsRenderMode: 'simple',
         },
+        sideBarOpenByDefault: false,
+        // panels: {
+        //   info: true,
+        //   annotations: false,
+        //   attribution: false,
+        //   canvas: false,
+        // },
         views: [
           { key: 'single', behaviors: ['individuals'] },
           { key: 'book', behaviors: ['paged'] },
@@ -36,9 +43,14 @@ export default function ReactMirador({currentManifest}) {
         ],
       },
       windows: [],
-      thumbnailNavigation: {
-        defaultPosition: 'far-right',
-      },
+      // windows: [
+      //   {
+      //     loadedManifest: currentManifest,
+      //   }
+      // ],
+      // thumbnailNavigation: {
+      //   defaultPosition: 'far-right',
+      // },
     };
     setViewerInstance(Mirador.viewer(config));
 
