@@ -10,7 +10,39 @@ export const getUsuario = async () => {
         });
         return response.data;
     } catch (error) {
-        throw new Error('Falha ao carregar usuário'); 
+        const status = error.response.status;
+
+        if (status === 440) {
+            const newToken = await refreshToken();
+            return getUsuarioWithNewToken(newToken);
+        }
+
+        throw new Error("Falha com as credenciais")
+    }
+}
+
+const refreshToken = async () => {
+    const refreshToken = localStorage.getItem('usuarioToken'); 
+    try {
+        const response = await apiClient.post('/auth/refresh-token', { refresh_token: refreshToken });
+        const newAccessToken = response.data.access_token;
+        localStorage.setItem('usuarioToken', newAccessToken); 
+        return newAccessToken;
+    } catch (error) {
+        throw new Error("Erro ao renovar o token");
+    }
+}
+
+const getUsuarioWithNewToken = async (newToken) => {
+    try {
+        const response = await apiClient.get('/auth/usuario/', {
+            headers: {
+                Authorization: `Bearer ${newToken}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error('Falha ao carregar usuário com o novo token');
     }
 }
 

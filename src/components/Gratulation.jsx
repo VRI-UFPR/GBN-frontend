@@ -31,10 +31,11 @@ const Gratulation = () => {
             />
             <Paragraph 
             text={
-                'Você pode realizar a Leseolympiade mais uma vez!\
-                Escolha retornar à página inicial ou finalizar sua participação\
-                retornando ao site da Lemmbra. Caso deseje realizar novamente,\
-                solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!'
+                'Você pode realizar a Leseolympiade mais uma vez\
+                ou finalizar sua participação retornando ao site da Lemmbra.\
+                Caso deseje realizar em outro momento,\
+                solicitamos que nos informe o seu mesmo e-mail.\
+                Agradecemos sua participação!'
             }
             maxWidth = {'sm'}
             mx={0}
@@ -51,7 +52,7 @@ const Gratulation = () => {
                     <Button 
                     component={Link}
                     variant='contained'
-                    to={'/'}
+                    to={'/leseolympiade'}
                     sx={{
                         mr: 2,
                         px: 4, 
