@@ -8,6 +8,8 @@ export const getUsuario = async () => {
                 Authorization: `Bearer ${token}`,
             },
         });
+
+        localStorage.setItem('usuarioId', response.data.id);
         return response.data;
     } catch (error) {
         const status = error.response.status;

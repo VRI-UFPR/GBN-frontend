@@ -41,7 +41,7 @@ export default function ColumnsGrid() {
     const [loading, setLoading] = useState(true);
 
     async function fetchData() {
-        const paginaRespose = await getPagina();
+        const paginaRespose = await getPagina(localStorage.getItem("usuarioId"), localStorage.getItem("lingua"));
         setPagina(paginaRespose);
 
         const TextoOcrResponse = await getTextoOcrById(paginaRespose.id);
