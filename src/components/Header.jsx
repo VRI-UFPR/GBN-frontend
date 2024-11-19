@@ -35,7 +35,7 @@ const Header = () => {
         },
     }));
 
-    const handleLogin = async (language) => {
+    const handleLogin = async (lingua) => {
         try {
             const email = document.getElementById('email-input').value;
             const token = await getToken(email).catch((error) => {
@@ -44,6 +44,7 @@ const Header = () => {
 
             localStorage.setItem('usuarioToken', token.access_token);
             localStorage.setItem('usuarioEmail', email);
+            localStorage.setItem('lingua', lingua);
             window.location.href = `/leseolympiade`;
         }
         catch (error) {
@@ -97,7 +98,7 @@ const Header = () => {
                     <Button 
                     component={Link}
                     variant='contained'
-                    onClick={handleLogin}
+                    onClick={() => handleLogin('portugues')}
                     sx={{
                         mr: 2,
                         px: 4, 
@@ -120,7 +121,7 @@ const Header = () => {
                     </Button>
                     <Button 
                     component={Link} 
-                    onClick={handleLogin}
+                    onClick={() => handleLogin('alemao')}
                     variant='outlined'
                     sx={{
                         px: 4, 
