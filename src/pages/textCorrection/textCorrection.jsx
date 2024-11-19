@@ -59,6 +59,7 @@ export default function ColumnsGrid() {
             alert(error);
             localStorage.removeItem("usuarioToken");
             localStorage.removeItem("usuarioEmail");
+            localStorage.removeItem("lingua");
             window.location.href = "/";
             return; 
         });
