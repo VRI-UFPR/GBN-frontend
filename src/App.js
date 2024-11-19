@@ -18,25 +18,24 @@ function App() {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 1,
-        height: '50px',
-        // borderBottom: '1px solid lightgray',
+        height: '2.5rem',
         backgroundColor: '#00548e'
       }}>
-        <Box sx={{ maxWidth: '6.25rem', flexGrow: 1, margin: '0 0.625rem' }}>
+        {/* <Box sx={{ maxWidth: '6.25rem', flexGrow: 1, margin: '0 0.625rem' }}>
           <a href={vriUrl} target="_blank" rel="noopener noreferrer">
             <Image src={vri} style={{ width: '100%', height: 'auto' }} alt="VRI Logo" />
           </a>
-        </Box>
+        </Box> */}
 
         <Box sx={{ flexGrow: 2, textAlign: 'center' }}>
-          <h1 style={{ color: 'white', margin: 0 }}>OLIMPÍADA GBN</h1>
+          <h1 style={{ color: 'white', margin: 0 }}>LESEOLYMPIAD</h1>
         </Box>
 
-        <Box sx={{ maxWidth: '6.25rem', flexGrow: 1, margin: '0 0.625rem' }}>
+        {/* <Box sx={{ maxWidth: '6.25rem', flexGrow: 1, margin: '0 0.625rem' }}>
           <a href={ufprUrl} target="_blank" rel="noopener noreferrer">
             <Image src={ufpr} style={{ width: '100%', height: 'auto' }} alt="UFPR Logo" />
           </a>
-        </Box>
+        </Box> */}
       </Box>
 
       {/* Main Content */}

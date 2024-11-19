@@ -46,7 +46,7 @@ export default function ReactMirador() {
           skipEmptyLines: true,
           optionsRenderMode: 'simple',
         },
-        // sideBarOpenByDefault: true,
+        sideBarOpenByDefault: false,
         // panels: {
         //   info: true,
         //   annotations: false,
@@ -65,9 +65,9 @@ export default function ReactMirador() {
       //     loadedManifest: currentManifest,
       //   }
       // ],
-      thumbnailNavigation: {
-        defaultPosition: 'far-right',
-      },
+      // thumbnailNavigation: {
+      //   defaultPosition: 'far-right',
+      // },
     };
     setViewerInstance(Mirador.viewer(config));
 
