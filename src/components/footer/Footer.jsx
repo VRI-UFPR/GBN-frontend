@@ -12,6 +12,9 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import VRILogo from '../../assets/vri-logo.png'
 import UFPRLogo from '../../assets/UFPR-pt.png'
 
+const vriUrl = 'https://web.inf.ufpr.br/vri/'; // Replace with your lab URL
+const ufprUrl = 'https://ufpr.br/'; // Replace with your university URL
+
 const Footer = () => {
 
   const StackColumn = styled(Stack) (() => ({
@@ -82,25 +85,29 @@ const Footer = () => {
       
       <StackColumn>
         <Box>
-            <img
-              src={VRILogo}
-              alt="VRIImg"
-              style={{ 
-                  width: "35%", 
-                  justifyContent: 'center'
-              }}
-            />
-          </Box>
+          <a href={vriUrl} target="_blank" rel="noopener noreferrer">
+              <img
+                src={VRILogo}
+                alt="VRIImg"
+                style={{ 
+                    width: "35%", 
+                    justifyContent: 'center'
+                }}
+              />
+          </a>
+        </Box>
       </StackColumn>
       <StackColumn>
         <Box>
-          <img
-            src={UFPRLogo}
-            alt="UFPRImg"
-            style={{ 
-                width: "40%", 
-            }}
-          />
+          <a href={ufprUrl} target="_blank" rel="noopener noreferrer">
+            <img
+              src={UFPRLogo}
+              alt="UFPRImg"
+              style={{ 
+                  width: "40%", 
+              }}
+            />
+          </a>
         </Box>
       </StackColumn>
 
