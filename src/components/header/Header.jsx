@@ -10,6 +10,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import HomeIcon from '@mui/icons-material/Home';
 import VRILogo from '../../assets/vri-logo.png'
 import UFPRLogo from '../../assets/UFPR-pt.png'
+import olimpiadaSVG from '../../assets/olimpiada-white.svg';
 
 const Header = () => {
     const HeaderContainer = styled(Box)(({ theme }) => ({
@@ -40,13 +41,20 @@ const Header = () => {
     return (
         <HeaderContainer>
             <LogoBox>
-                <IconButton
-                onClick={() => window.location.href = "https://olimpiadaslemmbra.com.br/"}
+                {/* <IconButton
+                onClick={() => window.location.href = "https://olimpiadas-lemmbra.webflow.io/#faq-row-3"}
                 style={{ color: 'white', fontSize: '2rem' }}  // Increased size
                 title="Voltar ao Lemmbra"
                 >
                 <ExitToAppIcon fontSize="inherit" />
-                </IconButton>
+                </IconButton> */}
+                <a href="https://olimpiadas-lemmbra.webflow.io/#faq-row-3" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src={olimpiadaSVG}
+                        alt="OlimpiadaLemmbra"
+                        style={{ width: "100%", cursor: 'pointer' }}
+                    />
+                </a>
             </LogoBox>
 
             <TitleBox 

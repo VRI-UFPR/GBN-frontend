@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import headerImg from '../assets/Zeitung.png'
 import TextField from '@mui/material/TextField';
 import { getToken } from '../api/usuarioApi';
+import olimpiadaSVG from '../assets/olimpiada-white.svg';
 
 const Header = () => {
 
@@ -94,12 +95,14 @@ const Header = () => {
                     }}
                 />
 
-                <Box>
+                <Box sx={{ display: 'flex', gap: 2 }}>
                     <Button 
                     component={Link}
                     variant='contained'
                     onClick={() => handleLogin('portugues')}
                     sx={{
+                        width: '9rem',
+                        height: '3rem',
                         mr: 2,
                         px: 4, 
                         py: 1,
@@ -124,27 +127,37 @@ const Header = () => {
                     onClick={() => handleLogin('alemao')}
                     variant='outlined'
                     sx={{
+                        width: '9rem',
+                        height: '3.1rem',
                         px: 4, 
                         py: 1,
                         fontSize:'0.9rem',
                         textTransform: 'uppercase',
                         borderRadius: 0,
                         color: '#fff',
-                        backgroundColor: 'transparent',
-                        borderColor: '#fff',
+                        borderColor: '#14192d',
+                        color: '#fff',
+                        backgroundColor: '#14192d',
                         "&&:hover": {
-                            color: '#343a55',
-                            borderColor: '#343a55',
+                            backgroundColor: "#343a55"
                         },
                         "&&:focus": {
-                            color: '#343a55',
-                            borderColor: '#343a55',
+                            backgroundColor: "#343a55"
                         }
                     }}
                     >
                         Alemão
                     </Button>
                 </Box>
+
+                <a href="https://olimpiadas-lemmbra.webflow.io/#faq-row-3" target="_blank" rel="noopener noreferrer">
+                    <img
+                        src={olimpiadaSVG}
+                        alt="OlimpiadaLemmbra"
+                        style={{ width: "full", marginTop: '6rem', marginLeft: '8rem', cursor: 'pointer' }}
+                    />
+                </a>
+
             </BoxText>
 
             <Box sx={theme => ({
