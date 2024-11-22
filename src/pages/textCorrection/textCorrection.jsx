@@ -56,6 +56,8 @@ export default function ColumnsGrid() {
 
         const manifest = "https://webdokumente.c3sl.ufpr.br/"+ paginaRespose.image_path+".jpg_manifest.json"
         setCurrentManifest(manifest)
+
+        setLoading(false);
     }
 
     const checkUser = async () => {
@@ -75,9 +77,12 @@ export default function ColumnsGrid() {
     };
 
     useEffect(() => {
-        checkUser();
-        fetchData();
-        setLoading(false);
+        const initialize = async () => {
+            checkUser();
+            fetchData();
+        }
+        // setLoading(false);
+        initialize();
 
         // Check initial orientation
         handleOrientationChange();

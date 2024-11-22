@@ -42,7 +42,11 @@ export default function ReactMirador({currentManifest}) {
           { key: 'scroll', behaviors: ['continuous'] },
         ],
       },
-      windows: [],
+      windows: [
+        {
+          xywh: "0,0,1000,1000"
+        }
+      ],
       // windows: [
       //   {
       //     loadedManifest: currentManifest,

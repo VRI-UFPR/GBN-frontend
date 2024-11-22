@@ -11,6 +11,8 @@ import HomeIcon from '@mui/icons-material/Home';
 import VRILogo from '../../assets/vri-logo.png'
 import UFPRLogo from '../../assets/UFPR-pt.png'
 import olimpiadaSVG from '../../assets/olimpiada-white.svg';
+import textLese from '../../assets/text-lese.webp';
+
 
 const Header = () => {
     const HeaderContainer = styled(Box)(({ theme }) => ({
@@ -57,12 +59,22 @@ const Header = () => {
                 </a>
             </LogoBox>
 
-            <TitleBox 
-                onClick={() => window.location.href = "/"} 
-                title="Voltar à página inicial"
-            >
-                <h1 style={{ color: 'white', margin: 0 }}>LESEOLYMPIADE</h1>
-            </TitleBox>
+            <Box
+              component="img"
+              src={textLese}
+              alt="Voltar à página inicial"
+              onClick={() => (window.location.href = "/")}
+              title="Voltar à página inicial"
+              sx={{
+                  cursor: 'pointer', // Make it clear that it's clickable
+                  width: '100%',
+                  maxWidth: '10rem', // Adjust as needed
+                  height: 'auto', // Maintain aspect ratio
+                  display: 'block',
+                  margin: '0 auto', // Center the image
+                  borderRadius: '8px', // Optional: Rounded corners
+              }}
+          />
 
             <LogoBox>
                 <IconButton

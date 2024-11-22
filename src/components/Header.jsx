@@ -6,6 +6,7 @@ import headerImg from '../assets/Zeitung.png'
 import TextField from '@mui/material/TextField';
 import { getToken } from '../api/usuarioApi';
 import olimpiadaSVG from '../assets/olimpiada-white.svg';
+import textLese from '../assets/text-lese.webp';
 
 const Header = () => {
 
@@ -59,17 +60,19 @@ const Header = () => {
             <BoxText 
             component='section'
             >
-                <Typography
-                variant='h2'
-                component= 'h1'
-                sx={{
-                    fontWeight: 700,
-                    color: '#fff',
-                    fontFamily: 'Sans-serif',
-                }}
-                >
-                    Leseolympiade
-                </Typography>
+                <Box
+                    component="img"
+                    src={textLese}
+                    alt="Leseolympiade"
+                    sx={{
+                        width: '100%',
+                        maxWidth: '37.5rem', // Adjust max width as needed
+                        height: 'auto', // Maintain aspect ratio
+                        display: 'block',
+                        margin: '0 auto', // Center the image horizontally
+                        borderRadius: '8px', // Optional: Add rounded corners
+                    }}
+                />
 
                 <Typography
                 variant='p'
@@ -154,7 +157,7 @@ const Header = () => {
                     <img
                         src={olimpiadaSVG}
                         alt="OlimpiadaLemmbra"
-                        style={{ width: "full", marginTop: '6rem', marginLeft: '8rem', cursor: 'pointer' }}
+                        style={{ width: "full", marginTop: '4rem', marginLeft: '8rem', cursor: 'pointer' }}
                     />
                 </a>
 

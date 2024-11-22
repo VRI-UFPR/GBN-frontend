@@ -70,7 +70,7 @@ const Gratulation = () => {
                     <Button 
                     component={Link}
                     variant='contained'
-                    to={'/leseolympiade'}
+                    to={'/'}
                     sx={{
                         mr: 2,
                         px: 4, 

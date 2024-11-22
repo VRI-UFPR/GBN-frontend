@@ -104,16 +104,17 @@ const Gallery = () => {
                     Como funciona a Leseolympiade
                 </Typography>
                 <Paragraph text={
-                    'Autentifique-se com seu e-mail da Lemmbra e inicie o desafio escolhendo sua língua de preferência (1).\
-                    Corrija a transcrição do conteúdo do jornal. \
-                    Para isso, você pode utilizar o teclado para digitar caracteres especiais (2)\
-                    e conferir o Alfabeto das Fontes Góticas, caso tenha alguma dúvida (3).\
+                    'Autentifique-se com o e-mail que usou para cadastrar-se no início da Olimpíada e inicie o desafio escolhendo sua língua de preferência (1).\
+                    Corrija a transcrição do conteúdo do jornal.\
+                    Para isso, você pode utilizar o teclado para digitar caracteres especiais (2) e conferir o Alfabeto das Fontes Góticas, se escolheu alemão, caso tenha alguma dúvida (3). Há uns poucos textos nos alfabetos tipicamente alemães, mas eles conferem pontos a mais para você vencer!\
                     Caso queira realizar o desafio com outra imagem, clique em TROCAR (4).\
                     Assim que finalizar a transcrição, clique em PROSSEGUIR (5).\
                     Você sempre pode retornar a sua transcrição clicando em VOLTAR (6).\
-                    Realize a interpretação do texto que você acabou de transcrever e pronto!\
-                    Ao clicar em ENVIAR você finaliza a LeseOlympiade (7)!\
-                    Caso deseje, você pode realizar o desafio novamente, ou retornar para o site da Lemmbra. (8)\
+                    Realize a interpretação do texto que você acabou de transcrever e pronto! Ao clicar em ENVIAR você finaliza uma tarefa da Olimpíada e seus pontos vão sendo registrados (7)!\
+                    Você pode realizar quantos desafios quiser. Pode sair e retornar para as demais páginas do site.(8)\
+                    E pode voltar sempre que quiser, para continuar a participação e ganhar pontos até a data limite da Olimpíada, dia 12 de dezembro de 2024, quinta-feira, às 22h. Ou até você ter realizado todas as tarefas disponíveis.\
+                    Não esqueça de sempre se registrar com o mesmo e-mail, para todas as participações somarem pontos em sua conta.\
+                    Sucesso, bom desempenho! E boa sorte!\
                     '
                 } 
                 maxWidth = {'sm'}
