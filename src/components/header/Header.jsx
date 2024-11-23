@@ -43,7 +43,7 @@ const Header = () => {
     return (
         <HeaderContainer>
             <LogoBox
-              title="Voltar a Olimpíadas Lemmbra"
+              title="Voltar a Olimpíadas lemmbra"
             >
                 {/* <IconButton
                 onClick={() => window.location.href = "https://olimpiadas-lemmbra.webflow.io/#faq-row-3"}
