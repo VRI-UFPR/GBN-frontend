@@ -36,7 +36,7 @@ const Gratulation = () => {
             const token = await getToken(email).catch((error) => {
                 throw error;
             });
-            lingua = lingua === 'portugues' ? 'alemao' : 'portugues';
+            lingua = lingua === 'português' ? 'alemao' : 'portugues';
             localStorage.setItem('usuarioToken', token.access_token);
             localStorage.setItem('lingua', lingua);
             window.location.href = `/leseolympiade`;
@@ -67,7 +67,7 @@ const Gratulation = () => {
                 />
                 {linguaTexto === 'português' ? (
                     <Paragraph 
-                    text={`Você viu todas as páginas em português! Agora, você pode realizar a Leseolympiade em alemão ou finalizar sua participação retornando ao site da Lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
+                    text={`Você viu todas as páginas em português! Agora, você pode realizar a Leseolympiade em alemão ou finalizar sua participação retornando a Olimpíadas lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
                     maxWidth={'sm'}
                     mx={0}
                     textAlign={'justify'}
@@ -76,7 +76,7 @@ const Gratulation = () => {
                 ) :
                 (
                     <Paragraph 
-                    text={`Você viu todas as páginas em alemão! Agora, você pode realizar a Leseolympiade em português ou finalizar sua participação retornando ao site da Lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
+                    text={`Você viu todas as páginas em alemão! Agora, você pode realizar a Leseolympiade em português ou finalizar sua participação retornando a a Olimpíadas lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
                     maxWidth={'sm'}
                     mx={0}
                     textAlign={'justify'}
@@ -143,7 +143,7 @@ const Gratulation = () => {
                             }
                         }}
                         >
-                            Retornar a Lemmbra
+                            Retornar a Olimpíadas lemmbra
                         </Button>
                     </Box>
                 </Box>
