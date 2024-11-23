@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 import { keyframes } from '@emotion/react';
 import { getToken } from '../api/usuarioApi';
 import trophy from '../assets/trophy-icon.svg';
-import Header from '/header/Header';
+import Header from './header/Header';
 
 const trophyAnimation = keyframes`
   0% {
@@ -31,14 +31,13 @@ const Gratulation = () => {
     const linguaTexto = lingua === 'portugues' ? 'português' : 'alemão';
 
     const handleLogin = async (lingua) => {
+        const email = localStorage.getItem('usuarioEmail')
         try {
-            const email = document.getElementById('email-input').value;
             const token = await getToken(email).catch((error) => {
                 throw error;
             });
             lingua = lingua === 'portugues' ? 'alemao' : 'portugues';
             localStorage.setItem('usuarioToken', token.access_token);
-            localStorage.setItem('usuarioEmail', email);
             localStorage.setItem('lingua', lingua);
             window.location.href = `/leseolympiade`;
         }
@@ -66,7 +65,7 @@ const Gratulation = () => {
                 text={'Parabéns por completar a Leseolympiade!'} 
                 textAlign={'center'}
                 />
-                {linguaTexto == 'português' ? (
+                {linguaTexto === 'português' ? (
                     <Paragraph 
                     text={`Você viu todas as páginas em português! Agora, você pode realizar a Leseolympiade em alemão ou finalizar sua participação retornando ao site da Lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
                     maxWidth={'sm'}
