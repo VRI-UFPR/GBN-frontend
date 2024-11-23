@@ -42,7 +42,9 @@ const Header = () => {
   
     return (
         <HeaderContainer>
-            <LogoBox>
+            <LogoBox
+              title="Voltar a Olimpíadas Lemmbra"
+            >
                 {/* <IconButton
                 onClick={() => window.location.href = "https://olimpiadas-lemmbra.webflow.io/#faq-row-3"}
                 style={{ color: 'white', fontSize: '2rem' }}  // Increased size
