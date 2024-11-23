@@ -47,7 +47,7 @@ const Gratulation = () => {
             textAlign={'center'}
             />
             <Paragraph 
-            text={`Você viu todas as páginas em ${linguaTexto}! Você pode realizar a Leseolympiade mais uma vez ou finalizar sua participação retornando ao site da Lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
+            text={`Você viu todas as páginas em ${linguaTexto}! Você pode realizar a Leseolympiade mais uma vez ou finalizar sua participação retornando a Olimpíadas lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
             maxWidth={'sm'}
             mx={0}
             textAlign={'justify'}
@@ -93,7 +93,7 @@ const Gratulation = () => {
                     </Button>
                     <Button 
                     component={Link} 
-                    to={'https://olimpiadaslemmbra.com.br/'}
+                    to={'https://olimpiadas-lemmbra.webflow.io/#faq-row-3'}
                     variant='outlined'
                     sx={{
                         px: 4, 
@@ -114,7 +114,7 @@ const Gratulation = () => {
                         }
                     }}
                     >
-                        Retornar a Lemmbra
+                        Retornar a Olimpíadas lemmbra
                     </Button>
                 </Box>
             </Box>
