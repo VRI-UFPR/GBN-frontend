@@ -8,7 +8,7 @@ import Title from './Title'
 import Paragraph from './Paragraph'
 import { Link } from 'react-router-dom'
 import { keyframes } from '@emotion/react';
-
+import { getToken } from '../api/usuarioApi';
 import trophy from '../assets/trophy-icon.svg'
 
 const trophyAnimation = keyframes`
@@ -29,6 +29,23 @@ const Gratulation = () => {
     const lingua = localStorage.getItem("lingua");
     const linguaTexto = lingua === 'portugues' ? 'português' : 'alemão';
 
+    const handleLogin = async (lingua) => {
+        try {
+            const email = document.getElementById('email-input').value;
+            const token = await getToken(email).catch((error) => {
+                throw error;
+            });
+            lingua = lingua === 'portugues' ? 'alemao' : 'portugues';
+            localStorage.setItem('usuarioToken', token.access_token);
+            localStorage.setItem('usuarioEmail', email);
+            localStorage.setItem('lingua', lingua);
+            window.location.href = `/leseolympiade`;
+        }
+        catch (error) {
+            alert('Falha ao logar\n' + error);
+        }
+    };
+
     return (
         <Stack 
         component='section'
@@ -46,14 +63,24 @@ const Gratulation = () => {
             text={'Parabéns por completar a Leseolympiade!'} 
             textAlign={'center'}
             />
-            <Paragraph 
-            text={`Você viu todas as páginas em ${linguaTexto}! Você pode realizar a Leseolympiade mais uma vez ou finalizar sua participação retornando ao site da Lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
-            maxWidth={'sm'}
-            mx={0}
-            textAlign={'justify'}
-            color='#ffffff'
-            />
-
+            {linguaTexto == 'português' ? (
+                <Paragraph 
+                text={`Você viu todas as páginas em português! Agora, você pode realizar a Leseolympiade em alemão ou finalizar sua participação retornando ao site da Lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
+                maxWidth={'sm'}
+                mx={0}
+                textAlign={'justify'}
+                color='#ffffff'
+                />
+            ) :
+            (
+                <Paragraph 
+                text={`Você viu todas as páginas em alemão! Agora, você pode realizar a Leseolympiade em português ou finalizar sua participação retornando ao site da Lemmbra. Caso deseje realizar em outro momento, solicitamos que nos informe o seu mesmo e-mail. Agradecemos sua participação!`}
+                maxWidth={'sm'}
+                mx={0}
+                textAlign={'justify'}
+                color='#ffffff'
+                />
+            )}
             {/* Trophy icon with animation */}
             <Box 
                 sx={{
@@ -70,7 +97,7 @@ const Gratulation = () => {
                     <Button 
                     component={Link}
                     variant='contained'
-                    to={'/'}
+                    onClick={() => handleLogin(linguaTexto)}
                     sx={{
                         mr: 2,
                         px: 4, 
@@ -93,7 +120,7 @@ const Gratulation = () => {
                     </Button>
                     <Button 
                     component={Link} 
-                    to={'https://olimpiadaslemmbra.com.br/'}
+                    to={"https://olimpiadas-lemmbra.webflow.io/#faq-row-3"}
                     variant='outlined'
                     sx={{
                         px: 4, 
