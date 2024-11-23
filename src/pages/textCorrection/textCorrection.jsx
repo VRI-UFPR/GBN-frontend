@@ -97,7 +97,7 @@ export default function ColumnsGrid() {
         , []);
 
     if (loading || pagina === undefined || !perguntaAlternativas) {
-        return <p>Loading...</p>;
+        return <p>Carregando... Considere recarregar a página</p>;
     } else {
         // console.log(pagina.image_path === undefined);
     

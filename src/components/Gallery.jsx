@@ -111,8 +111,8 @@ const Gallery = () => {
                     Assim que finalizar a transcrição, clique em PROSSEGUIR (5).\
                     Você sempre pode retornar a sua transcrição clicando em VOLTAR (6).\
                     Realize a interpretação do texto que você acabou de transcrever e pronto! Ao clicar em ENVIAR você finaliza uma tarefa da Olimpíada e seus pontos vão sendo registrados (7)!\
-                    Você pode realizar quantos desafios quiser. Pode sair e retornar para as demais páginas do site.(8)\
-                    E pode voltar sempre que quiser, para continuar a participação e ganhar pontos até a data limite da Olimpíada, dia 12 de dezembro de 2024, quinta-feira, às 22h. Ou até você ter realizado todas as tarefas disponíveis.\
+                    Você pode realizar quantas tarefas quiser e então retornar para as demais páginas do site (8).\
+                    Retorne na Leseolympiade sempre que quiser continuar transcrevendo e interpretando jornais para ganhar pontos até a data limite da Olimpíada, dia 12 de dezembro de 2024, quinta-feira, às 22h. Ou até você ter realizado todas as tarefas disponíveis.\
                     Não esqueça de sempre se registrar com o mesmo e-mail, para todas as participações somarem pontos em sua conta.\
                     Sucesso, bom desempenho! E boa sorte!\
                     '
