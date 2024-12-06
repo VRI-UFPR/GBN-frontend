@@ -6,7 +6,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Image from 'mui-image'
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import LoopIcon from '@mui/icons-material/Loop';
-
+import Typography from '@mui/material/Typography';
+import Paragraph from '../../components/Paragraph'
 import { getPagina } from '../../api/paginaApi';
 import { getTextoOcrById, getPerguntaAlternativas } from '../../api/textoApi';
 import { getUsuario } from '../../api/usuarioApi';
@@ -141,6 +142,34 @@ export default function ColumnsGrid() {
                                 maxHeight: '56.25rem',
                                 overflowY: 'scroll' // Enable vertical scrolling
                             }}>
+                                <Box
+                                    sx={{
+                                        marginTop: "auto",
+                                        margin: "1vw",
+                                        padding: "1vw",
+                                        border: "1px solid #ECECEC",
+                                        borderRadius: "0.25vw",
+                                        }}
+                                >
+                                    <Typography
+                                        variant='h5'
+                                        component='h4'
+                                        align='left'
+                                        sx={{
+                                            paddingTop: 1,
+                                        }}
+                                        >
+                                            Referência
+                                    </Typography>
+                                    <Paragraph text={
+                                            'Jornal do Povo, Recife, ano 1, n. 2, 15 jan. 1889.'
+                                        } 
+                                        maxWidth = {'sm'}
+                                        mx={'auto'}
+                                        textAlign={'justify'}
+                
+                                    />
+                                </Box>
                                 <OcrCorrector ocrText={ocrText} pagina={pagina} perguntaAlternativas={perguntaAlternativas} updatePagina={fetchData} checkUser={checkUser}/>
                                 <PeekFont />
                             </Box>
