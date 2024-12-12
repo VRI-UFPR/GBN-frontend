@@ -4,6 +4,7 @@ import ColumnsGrid from './pages/textCorrection/textCorrection';
 import Home from './pages/Home';
 import Footer from './components/footer/Footer';
 import Gratulation from './components/Gratulation'
+import Encerramento from './components/Encerramento';
 
 function App() {
   
@@ -11,13 +12,10 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>}></Route>
-          <Route path='/leseolympiade' element={<ColumnsGrid />} />
-          <Route path='/gratulation' element={<Gratulation />} />
+          <Route path="/" element={<Encerramento/>}></Route>
         </Routes>
       </BrowserRouter>
       <Footer />
-
     </div>
   );
 }
